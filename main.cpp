@@ -28,8 +28,8 @@ int main()
     double media4;
     int age = 0;			//case 2: età
     string day = "";		//case 3: lunedì
-    double $ = 0;			//case 4: dollarieuro
-    double € = 0;
+    double dollari = 0;			//case 4: dollarieuro
+    double euro = 0;
     char t = ' ';			//case 5: vocale
     char cUp;
 
@@ -38,7 +38,6 @@ int main()
     cout << "Inserisci il numero della sezione del programma da eseguire: ";
     cin >> scambio;
     switch (scambio)
-
     {
 
         case 1:
@@ -165,8 +164,23 @@ int main()
                 cout << "questo non e' niente, come ti permetti brutto strostro! :'(" << endl ;
             break;
 
+        case 6:
+            int pera = 0;
+            int mela = 0;
+            int banana = 0;
 
-        default: cout << "il niente non e' un opzione" << endl;
+            banana = 6;
+            mela = (20-banana)/2;
+            pera = 9 - mela + banana;
+
+            int result = banana + mela + pera;
+            cout << result;
+
+            break;
+
+
+        default:
+            cout << "il niente non e' un opzione" << endl;
             break;
     }
 
