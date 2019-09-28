@@ -1,12 +1,10 @@
 /*
-Author: D36l
+Author: Davoleo
 Date: 24/01/18
-Version: 1.0
-Copyright - © - Davoleo - 2018
+Copyright - © - Davoleo - 2018-19
 */
 
 #include <iostream>
-#include <limits>
 #include <string>
 #include <cctype>
 //#define DEBUG <--- per la debug mode
@@ -164,24 +162,8 @@ int main()
                 cout << "questo non e' niente, come ti permetti brutto strostro! :'(" << endl ;
             break;
 
-        case 6:
-            int pera = 0;
-            int mela = 0;
-            int banana = 0;
-
-            banana = 6;
-            mela = (20-banana)/2;
-            pera = 9 - mela + banana;
-
-            int result = banana + mela + pera;
-            cout << result;
-
-            break;
-
-
         default:
             cout << "il niente non e' un opzione" << endl;
-            break;
     }
 
 
