@@ -3,4 +3,4 @@ project(TestApplication1)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(TestApplication1 main_legacy.cpp)
+add_executable(TestApplication1 ch1.cpp)

@@ -1,9 +1,8 @@
-// TestApplication1.cpp: definisce il punto di ingresso dell'applicazione console.
+// Application start point is defined in CMakeLists
 /*
-Author: D36l
+Author: Davoleo
 Date: 24/01/18
-Version: 1.0
-Copyright - © - Davoleo - 2018
+Copyright - © - Davoleo - 2018-19
 */
 
 /* Catena della programmazione
