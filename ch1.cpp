@@ -43,5 +43,29 @@ int main() {
     std::cout << "Favourite Number: " << sampleFloat << std::endl;
     std::cout << "Size of int: " << sizeof(age) << std::endl;
 
+    std::cout << "------------------------------------------------------------" << std::endl;
+
+    // just like the main other programming languages
+    //Arithmetic Operations
+    //+, -, *, /, %, --, ++
+    std::cout << "5 + 2 = " << 5 + 2 << std::endl;
+    std::cout << "5 - 2 = " << 5 - 2 << std::endl;
+    std::cout << "5 * 2 = " << 5 * 2 << std::endl;
+    std::cout << "5 / 2 = " << 5 / 2 << std::endl;
+    std::cout << "5 % 2 = " << 5 % 2 << std::endl;
+
+    //Incremental/Decremental
+    int five = 5;
+    std::cout << "5++ = " << five++ << std::endl;
+    std::cout << "++5 = " << ++five << std::endl;
+    std::cout << "5-- = " << five-- << std::endl;
+    std::cout << "--5 = " << --five << std::endl;
+
+    std::cout << "------------------------------------------------------------" << std::endl;
+
+    //Casting
+    std::cout << "4 / 5 = " << 4 / 5 << std::endl;
+    std::cout << "4 / 5 = " << (float) 4 / 5 << std::endl;
+
     return 0;
 }
