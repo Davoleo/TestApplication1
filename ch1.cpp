@@ -12,13 +12,12 @@
 #include <string>       // Strings
 #include <fstream>      // File I/O
 
-using namespace std;
 
 int main() {
 
     //Basic Hello World
-    //Cout prints the text on the screen / endl puts a carriage return at the end
-    cout << "Hello World" << endl;
+    //Cout prints the text on the screen / std::endl puts a carriage return at the end
+    std::cout << "Hello World" << std::endl;
 
     //Data types
     // Constant double value (can contain decimal points) | Accurate up to 15 digits
@@ -41,8 +40,8 @@ int main() {
     //floats: accurate up to 6 decimal points | they take up less memory
     float sampleFloat = 3.33;
 
-    cout << "Favourite Number: " << sampleFloat << endl;
-    cout << "Size of int: " << sizeof(age) << endl;
+    std::cout << "Favourite Number: " << sampleFloat << std::endl;
+    std::cout << "Size of int: " << sizeof(age) << std::endl;
 
     return 0;
 }
