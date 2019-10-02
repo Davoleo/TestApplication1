@@ -67,5 +67,45 @@ int main() {
     std::cout << "4 / 5 = " << 4 / 5 << std::endl;
     std::cout << "4 / 5 = " << (float) 4 / 5 << std::endl;
 
+    std::cout << "------------------------------------------------------------" << std::endl;
+
+    //If Statement
+    //Conditional Operators: ==, !=, >, <, >=, <=
+    //Logical Operators: &&, ||, !
+    bool isDrunk = false;
+
+    if (age >= 1 && age < 18)
+        std::cout << "You can't drive" << std::endl;
+    else if (isDrunk)
+        std::cout << "You can't drive" << std::endl;
+    else if (age >= 80 && (age > 100 || age - 16 > 5))
+        std::cout << "You can't drive" << std::endl;
+    else
+        std::cout << "You can drive" << std::endl;
+
+    //Switch Statement
+    int greetingOption = 2;
+
+    switch (greetingOption) {
+        case 1:
+            std::cout << "Bounjour" << std::endl;
+            break;
+        case 2:
+            std::cout << "Hola" << std::endl;
+            break;
+        case 3:
+            std::cout << "Hallo" << std::endl;
+            break;
+        case 4:
+            std::cout << "Ciao" << std::endl;
+            break;
+        default:
+            std::cout << "Hello" << std::endl;
+    }
+
+    //Ternary Operator
+    //variable = condition ? ifTrue : ifFalse
+    int largestNum = 5 > 2 ? 5 : 2;
+
     return 0;
 }
