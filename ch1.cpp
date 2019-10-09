@@ -107,5 +107,26 @@ int main() {
     //variable = condition ? ifTrue : ifFalse
     int largestNum = 5 > 2 ? 5 : 2;
 
+    std::cout << "------------------------------------------------------------" << std::endl;
+
+    //Arrays: Store multiple values of the same data type in one single variable
+    //Create an array of five slots
+    int myColors[5];
+    int badColors[5] = {0x026635, 0xFFFFFF, 0x00BFFF, 0xFF1493, 0x09493D};
+
+    //Select single items in arrays by index
+    std::cout << "1st Bad Color: " << badColors[0] << std::endl;
+
+    //Multi-dimensional arrays
+    char sampleName[2][5] = {{'M', 'a', 'r', 'i', 'o'},
+                             {'R', 'o', 's', 's', 'i'}};
+
+    //Print out the second item in the second part of the multidimensional array
+    std::cout << "2nd letter in 2nd array: " << sampleName[1][1] << std::endl;
+
+    //Change an item in a specific array slot by index
+    sampleName[0][4] = 'a';
+    std::cout << "New Value: " << sampleName[0][4] << std::endl;
+
     return 0;
 }
