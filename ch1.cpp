@@ -7,16 +7,24 @@
  * Multi-line Comment
  */
 
+#include <cstdlib>      // Bunch of standard utilities
 #include <iostream>     // Basic I/O
+#include <limits>       // Mininum - Maximum and limits
 #include <vector>       // Vectors
 #include <string>       // Strings
-#include <fstream>      // File I/O
+#include <fstream>      // File I/O and String streams
+#include <numeric>      // Work with Sequences of values
+#include <ctime>        // Work with time
+#include <cmath>        // Common Math Functions
 
+//Available in all functions
+int globalVar = 0;
 
-int main() {
+int main(int argc, char** argv) {
 
     //Basic Hello World
     //Cout prints the text on the screen / std::endl puts a carriage return at the end
+    // the "<<" operator puts the "Hello World" String in the output stream
     std::cout << "Hello World" << std::endl;
 
     //Data types
@@ -32,16 +40,29 @@ int main() {
     //integers
     int age = 18;
     // Other ints
+    // unsigned versions (can reach double the range of the signed version but cannot store negative numbers (MIN = 0))
     // short int (at least 16 bits)
     // long int (at least 32 bits)
     // long long int (at least 64 bits)
-    //unsigned int (Same size as regular int but double range on one side)
 
     //floats: accurate up to 6 decimal points | they take up less memory
-    float sampleFloat = 3.33;
+    float overFloat = 3.3333333;
+    float overFloat2 = 3.3333333;
+    //Loss Of precision
+    std::printf("OverFloat Sum = %.7F\n", (overFloat + overFloat2));
 
-    std::cout << "Favourite Number: " << sampleFloat << std::endl;
+    //Print Format
+    //%c = char | %d = integers | %5d = integer with 5 spaces padding | %.3f = flaoting point value with precision up to the 3rd digit | %s = strings
+    std::printf("%c %d %5d %.3f %s\n", 'F', 10, 5, 3.1234, "Henlo");
+
+    std::cout << "min double: " << std::numeric_limits<double>::min() << std::endl;
+    std::cout << "max long double: " << std::numeric_limits<long double>::max() << std::endl;
+
+    std::cout << "Favourite Number: " << overFloat << std::endl;
     std::cout << "Size of int: " << sizeof(age) << std::endl;
+
+    //Type Inference
+    auto inferredVar = true;
 
     std::cout << "------------------------------------------------------------" << std::endl;
 
@@ -128,5 +149,6 @@ int main() {
     sampleName[0][4] = 'a';
     std::cout << "New Value: " << sampleName[0][4] << std::endl;
 
+    //When There's no errors the main function should return 0
     return 0;
 }
