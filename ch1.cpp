@@ -38,7 +38,10 @@ int main(int argc, char** argv) {
     //booleans
     bool sampleBool = true;
     //integers
-    int age = 18;
+    int age;
+    std::cout << "ENTER YOUR FUCKING AGE! ";
+    //Captures user input
+    std::cin >> age;
     // Other ints
     // unsigned versions (can reach double the range of the signed version but cannot store negative numbers (MIN = 0))
     // short int (at least 16 bits)
@@ -62,7 +65,12 @@ int main(int argc, char** argv) {
     std::cout << "Size of int: " << sizeof(age) << std::endl;
 
     //Type Inference
-    auto inferredVar = true;
+    //Automatically becomes a char* variable (needs to be converted to a string before using it like one)
+    auto inferredVar = 1231;
+    std::string emptyString;
+
+    //stoi() converts a String to an Integer
+    int n = stoi(emptyString);
 
     std::cout << "------------------------------------------------------------" << std::endl;
 
@@ -126,7 +134,9 @@ int main(int argc, char** argv) {
 
     //Ternary Operator
     //variable = condition ? ifTrue : ifFalse
-    int largestNum = 5 > 2 ? 5 : 2;
+    bool canVote = age >= 18 ? true : false;
+    std::cout.setf(std::ios::boolalpha);
+    std::cout << "can you vote? " << canVote << std::endl;
 
     std::cout << "------------------------------------------------------------" << std::endl;
 
