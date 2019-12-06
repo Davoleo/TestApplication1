@@ -67,7 +67,7 @@ int main(int argc, char** argv) {
     //Type Inference
     //Automatically becomes a char* variable (needs to be converted to a string before using it like one)
     auto inferredVar = 1231;
-    std::string emptyString;
+    std::string emptyString = "123";
 
     //stoi() converts a String to an Integer
     int n = stoi(emptyString);
@@ -158,6 +158,18 @@ int main(int argc, char** argv) {
     //Change an item in a specific array slot by index
     sampleName[0][4] = 'a';
     std::cout << "New Value: " << sampleName[0][4] << std::endl;
+
+    std::cout << "------------------------------------------------------------" << std::endl;
+
+    //Vectors
+    //Dynamic Arrays (used when you don't know how many items you're going to store)
+    std::vector<int> numVector(2);
+    numVector[0] = 1;
+    numVector[1] = 2;
+    //Adds an item to the end of the vector
+    numVector.push_back(3);
+
+    std::cout << "Vector Size: " << numVector.size() << std::endl;
 
     //When There's no errors the main function should return 0
     return 0;
