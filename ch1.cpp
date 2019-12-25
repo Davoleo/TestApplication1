@@ -16,6 +16,7 @@
 #include <numeric>      // Work with Sequences of values
 #include <ctime>        // Work with time
 #include <cmath>        // Common Math Functions
+#include <sstream>      // String Streams
 
 //Available in all functions
 int globalVar = 0;
@@ -170,6 +171,51 @@ int main(int argc, char** argv) {
     numVector.push_back(3);
 
     std::cout << "Vector Size: " << numVector.size() << std::endl;
+
+    std::cout << "------------------------------------------------------------" << std::endl;
+
+    //While Loops
+    //Looping continue until the condition at the top becomes false
+    int i = 1;
+    while (i <= 20) {
+        if (i % 2 == 0) {
+            i++;
+            //Continue to the new loop
+            continue;
+        }
+
+        //break: Exit the while loop completely
+        if (i == 15)
+            break;
+
+        std::cout << i << std::endl;
+        i++;
+    }
+
+    std::cout << "------------------------------------------------------------" << std::endl;
+
+    //Using while loop with a String Stream
+    std::vector<std::string> words;
+
+    std::stringstream stringStream("Random Words PADORU PADORU");
+    std::string word;
+    while (std::getline(stringStream, word, ' ')) {
+        words.push_back(word);
+    }
+
+    //index-based for loop to iterate over an array
+    for (int j = 0; j < words.size(); ++j) {
+        std::cout << words[j] << std::endl;
+    }
+
+    std::cout << "------------------------------------------------------------" << std::endl;
+    
+    int arr3[] = {1, 2, 3};
+    //range-based for loop to iterate over an array
+    for (auto x: arr3) {
+        std::cout << x << std::endl;
+    }
+
 
     //When There's no errors the main function should return 0
     return 0;
