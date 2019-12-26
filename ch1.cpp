@@ -216,6 +216,70 @@ int main(int argc, char** argv) {
         std::cout << x << std::endl;
     }
 
+    std::cout << "------------------------------------------------------------" << std::endl;
+
+    //Do While Loop
+    //Random number guessing game
+    //Generate a random number with a time seed
+    srand(time(NULL));
+    int secretNum = rand() % 11;
+    int guess = 0;
+
+    do {
+        std::cout << "Guess the Number: ";
+        std::cin >> guess;
+        if (guess > secretNum)
+            std::cout << "Too Big\n";
+        if (guess < secretNum)
+            std::cout << "Too Small\n";
+    }while (secretNum != guess);
+
+    std::cout << "You guessed it!" << std::endl;
+
+    std::cout << "------------------------------------------------------------" << std::endl;
+
+    //Strings
+    //a series of chars
+    std::string string1 = "I'm Example String";
+    //First Char of the string
+    std::cout << "1st: " << string1[0] << std::endl;
+    //Last Char of the string
+    std::cout << "1st: " << string1.back() << std::endl;
+    //Length of the string
+    std::cout << "1st: " << string1.length() << std::endl;
+    //copy a whole string
+    std::string string2 = string1;
+    //copy a part of a string
+    std::string string3(string2, 4);
+    //combine strings
+    std::string string4 = string1 + " and you're not";
+    string4.append("!");
+    std::cout << string4 << std::endl;
+    string4.erase(12, string4.length() - 1);
+    std::cout << "New String: " << string4 << std::endl;
+
+    //Find the index where the first occurrence of the searched string is found
+    //std::string::npos is the standard
+    if (string1.find("string") != std::string::npos)
+        std::cout << "string Index: " << string1.find("string") << std::endl;
+
+    //Trims a string into a substring depending on the given parameters
+    std::cout << "Substring: " << string4.substr(6, 6) << std::endl;
+    //Converting a number to a string
+    std::string stringNum = std::to_string(1+3);
+
+    std::cout << "------------------------------------------------------------" << std::endl;
+
+    //Char Functions
+    char letterj = 'j';
+    char char5 = '5';
+    char space =  ' ';
+
+    std::cout << "Is 'j' a letter or a number: " << std::isalnum(letterj) << std::endl;
+    std::cout << "Is 'j' a letter: " << std::isalpha(letterj) << std::endl;
+    std::cout << "Is '5' a number: " << std::isdigit(char5) << std::endl;
+    std::cout << "Is ' ' a space: " << std::isspace(space) << std::endl;
+
 
     //When There's no errors the main function should return 0
     return 0;
