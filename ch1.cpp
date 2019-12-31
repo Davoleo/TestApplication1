@@ -11,6 +11,7 @@
 #include <iostream>     // Basic I/O
 #include <limits>       // Mininum - Maximum and limits
 #include <vector>       // Vectors
+#include <array>        // C++ arrays
 #include <string>       // Strings
 #include <fstream>      // File I/O and String streams
 #include <numeric>      // Work with Sequences of values
@@ -209,10 +210,13 @@ int main(int argc, char** argv) {
     }
 
     std::cout << "------------------------------------------------------------" << std::endl;
-    
+
+    //It's bad practice to use range-based for loops over CArrays (AFFECTS PERFORMANCE)
     int arr3[] = {1, 2, 3};
+
+    std::array<int, 3> arr4{1, 2, 3};
     //range-based for loop to iterate over an array
-    for (auto x: arr3) {
+    for (auto x: arr4) {
         std::cout << x << std::endl;
     }
 
