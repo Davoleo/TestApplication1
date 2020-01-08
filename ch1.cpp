@@ -284,6 +284,34 @@ int main(int argc, char** argv) {
     std::cout << "Is '5' a number: " << std::isdigit(char5) << std::endl;
     std::cout << "Is ' ' a space: " << std::isspace(space) << std::endl;
 
+    std::cout << "------------------------------------------------------------" << std::endl;
+
+    //Math Functions
+    std::cout << "abs(-10) = " << std::abs(-10) << std::endl;
+    std::cout << "max(5, 3) = " << std::max(5, 3) << std::endl;
+    std::cout << "min(5, 3) = " << std::min(5, 3) << std::endl;
+    std::cout << "fmax(5, 3) = " << std::fmax(5.3, 5.8) << std::endl;
+    std::cout << "fmin(5, 3) = " << std::fmin(5.3, 5.8) << std::endl;
+    std::cout << "ceil(10.30) = " << std::ceil(10.30) << std::endl;
+    std::cout << "floor(10.30) = " << std::floor(10.30) << std::endl;
+    std::cout << "round(10.30) = " << std::round(10.30) << std::endl;
+    //x^y
+    std::cout << "pow(2, 3) = " << std::pow(2, 3) << std::endl;
+    //square root
+    std::cout << "sqrt(25) = " << std::sqrt(25) << std::endl;
+    //cube root
+    std::cout << "cbrt(1000) = " << std::cbrt(1000) << std::endl;
+    //e^x
+    std::cout << "exp(1) = " << std::exp(1) << std::endl;
+    //2^x
+    std::cout << "exp2(1) = " << std::exp2(1) << std::endl;
+    //logarithm
+    std::cout << "log(1) = " << std::log(1) << std::endl;
+    //hypothenuse (SQRT(X^2 + Y^2))
+    std::cout << "hypot(2, 3) = " << std::hypot(2, 3) << std::endl;
+
+    //other functions
+    //sin, cos, tan, asin, acos, atan, sinh, cosh, tanh, asinh, acosh, atanh
 
     //When There's no errors the main function should return 0
     return 0;
