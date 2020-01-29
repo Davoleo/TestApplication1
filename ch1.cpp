@@ -313,6 +313,29 @@ int main(int argc, char** argv) {
     //other functions
     //sin, cos, tan, asin, acos, atan, sinh, cosh, tanh, asinh, acosh, atanh
 
+    std::cout << "------------------------------------------------------------" << std::endl;
+
+    //Custom Functions: Function Prototype (Makes sure you can call AddNumbers even if it's defined later in the file)
+    double AddNumbers(double num1, double num2);
+    void AssignAge(int age);
+
+    std::printf("%.1f + %.1f = %.1f\n", 5.3, 7.3, AddNumbers(5.3, 7.3));
+
+    //Variables in method are passed by reference, the function is a completely detatched block of code
+    int agetest = 9;
+    AssignAge(agetest);
+    std::cout << agetest << std::endl;
+
     //When There's no errors the main function should return 0
     return 0;
+}
+
+//Custom Functions, Defining a function - parameters can be assigned custom values
+double AddNumbers(double num1 = 0, double num2 = 0) {
+    return num1 + num2;
+}
+
+void AssignAge(int age) {
+    //variables inside of functions are local variable, they can't be accessed out of the function body
+    age = 24;
 }
