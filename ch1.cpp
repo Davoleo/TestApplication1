@@ -326,6 +326,38 @@ int main(int argc, char** argv) {
     AssignAge(agetest);
     std::cout << agetest << std::endl;
 
+    std::cout << "------------------------------------------------------------" << std::endl;
+    //POINTERS: Stores an address in memory
+    void assignAge2(int* pAge);
+
+    int age2 = 43;
+    assignAge2(&age2);
+    std::cout << age2 << std::endl;
+
+    //declaring a pointer
+    int* pAge = nullptr;
+    //& is a REFERENCE OPERATOR returns the address for a variable
+    pAge = &age;
+    //Printing the memory address of the pointer
+    std::cout << "Address: " << pAge << std::endl;
+    //Printing the value the memory address points to
+    //* returns the value from a memory address (the exact opposite of &)
+    std::cout << "Value: " << *pAge << std::endl;
+
+    //Pointer to an Array
+    void DoubleArray(int *arr, int size);
+
+    int intArr[] = {1, 2, 3, 4};
+    int* pIntArray = intArr;
+    std::cout << "1st address: " << pIntArray << std::endl;
+    pIntArray++;
+    std::cout << "2nd address: " << pIntArray << std::endl;
+
+    DoubleArray(pIntArray, 4);
+    for (int k = 0; k < 4; ++k) {
+        std::cout << "Value " << k+1 << ": " << intArr[k] << std::endl;
+    }
+
     //When There's no errors the main function should return 0
     return 0;
 }
@@ -338,4 +370,15 @@ double AddNumbers(double num1 = 0, double num2 = 0) {
 void AssignAge(int age) {
     //variables inside of functions are local variable, they can't be accessed out of the function body
     age = 24;
+}
+
+void assignAge2(int* pAge) {
+    //Assigns a value to the pAge address
+    *pAge = 22;
+}
+
+void DoubleArray(int *arr, int size) {
+    for (int i = 0; i < size; ++i) {
+        arr[i] = arr[i] * 2;
+    }
 }
