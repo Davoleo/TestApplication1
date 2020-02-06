@@ -358,6 +358,20 @@ int main(int argc, char** argv) {
         std::cout << "Value " << k+1 << ": " << intArr[k] << std::endl;
     }
 
+    std::cout << "------------------------------------------------------------" << std::endl;
+    //Exception Handling
+    int dividend = 10, divisor = 0;
+    try {
+        if (divisor == 0) {
+            //Throws an exception
+            throw "Division by Zero Exception";
+        } else {
+            printf("%.1f / %.1f = %.1f", dividend, divisor, dividend / divisor);
+        }
+    } catch (const char* e) {
+        std::cout << "Error: " << e << std::endl;
+    }
+
     //When There's no errors the main function should return 0
     return 0;
 }
