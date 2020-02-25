@@ -372,6 +372,10 @@ int main(int argc, char** argv) {
         std::cout << "Error: " << e << std::endl;
     }
 
+    std::cout << "------------------------------------------------------------" << std::endl;
+    //Objects and Classes - Fields, Methods
+
+
     //When There's no errors the main function should return 0
     return 0;
 }
