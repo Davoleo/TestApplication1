@@ -42,6 +42,3 @@ double Shape::area() {
     return height*width;
 }
 
-int Shape::getCount() {
-    return count;
-}

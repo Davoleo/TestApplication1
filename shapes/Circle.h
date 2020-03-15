@@ -12,11 +12,10 @@ class Circle : public Shape {
 public:
     Circle(double radius);
     virtual ~Circle();
-    double area();
+    double area() override;
 
 private:
 
 };
-
 
 #endif //TESTAPPLICATION1_CIRCLE_H

@@ -32,7 +32,10 @@ public:
 
     void setWidth(double width);
 
-    static int getCount();
+    //Implementing in Shape.cpp doesn't work :(
+    static int getCount() {
+        return count;
+    }
 
     //Marked as virtual because it's not defined in the Shape class but defined in its child classes
     virtual double area();
