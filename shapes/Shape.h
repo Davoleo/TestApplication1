@@ -2,9 +2,9 @@
 // Created by Davoleo on 25/02/2020.
 //
 
+//Make sure we don't load more than one header
 #ifndef TESTAPPLICATION1_SHAPE_H
 #define TESTAPPLICATION1_SHAPE_H
-
 
 class Shape {
 

@@ -38,8 +38,10 @@ void Shape::setWidth(double w) {
     this->width = w;
 }
 
+double Shape::area() {
+    return height*width;
+}
+
 int Shape::getCount() {
     return count;
 }
-
-

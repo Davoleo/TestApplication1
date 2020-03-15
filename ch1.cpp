@@ -19,6 +19,9 @@
 #include <cmath>        // Common Math Functions
 #include <sstream>      // String Streams
 
+#include "shapes/Shape.h"
+#include "shapes/Circle.h"
+
 //Available in all functions
 int globalVar = 0;
 
@@ -374,7 +377,11 @@ int main(int argc, char** argv) {
 
     std::cout << "------------------------------------------------------------" << std::endl;
     //Objects and Classes - Fields, Methods
-
+    void printArea(Shape& shape);
+    Shape square(5);
+    Circle circle(10);
+    printArea(square);
+    printArea(circle);
 
     //When There's no errors the main function should return 0
     return 0;
@@ -399,4 +406,9 @@ void DoubleArray(int *arr, int size) {
     for (int i = 0; i < size; ++i) {
         arr[i] = arr[i] * 2;
     }
+}
+
+//Accepts every a shape or its subclasses
+void printArea(Shape& shape) {
+    std::cout << "Area: " << shape.area() << std::endl;
 }
