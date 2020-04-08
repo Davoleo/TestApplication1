@@ -21,6 +21,7 @@
 
 #include "shapes/Shape.h"
 #include "shapes/Circle.h"
+#include "shapes/Rectangle.h"
 
 //Available in all functions
 int globalVar = 0;
@@ -378,7 +379,7 @@ int main(int argc, char** argv) {
     std::cout << "------------------------------------------------------------" << std::endl;
     //Objects and Classes - Fields, Methods
     void printArea(Shape& shape);
-    Shape square(5);
+    Rectangle square(5);
     Circle circle(10);
     printArea(square);
     printArea(circle);
