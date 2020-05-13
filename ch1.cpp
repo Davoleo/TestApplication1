@@ -26,6 +26,33 @@
 //Available in all functions
 int globalVar = 0;
 
+//By Default everything inside a struct will be public unless otherwise specified
+struct ShapeStruct {
+    double width, height;
+
+    ShapeStruct(double width = 1, double height = 1) {
+        this->width = width;
+        this->height = height;
+    }
+
+    double area() {
+        return width * height;
+    }
+
+private:
+    int id;
+};
+
+struct CircleStruct : ShapeStruct {
+    CircleStruct(double radius) {
+        this->width = radius*2;
+        this->height = radius*2;
+    }
+    double area() {
+        return M_PI * pow((width/2), 2);
+    }
+};
+
 int main(int argc, char** argv) {
 
     //Basic Hello World
@@ -383,6 +410,14 @@ int main(int argc, char** argv) {
     Circle circle(10);
     printArea(square);
     printArea(circle);
+
+    std::cout << "------------------------------------------------------------" << std::endl;
+
+    //Structs
+    ShapeStruct shape(10, 6);
+    std::cout << "Square Area: " << shape.area() << std::endl;
+    CircleStruct circleStruct(10);
+    std::cout << "Square Area: " << circleStruct.area() << std::endl;
 
     //When There's no errors the main function should return 0
     return 0;
