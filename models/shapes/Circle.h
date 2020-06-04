@@ -9,10 +9,15 @@
 
 //Defining a child class (Inheritance)
 class Circle : public Shape {
+private:
+    double radius;
+
 public:
     Circle(double radius);
     virtual ~Circle();
     double area() override;
+    double getRadius() const;
+    void setRadius(double radius);
 
 private:
 

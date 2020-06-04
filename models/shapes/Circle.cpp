@@ -5,11 +5,20 @@
 #include "Circle.h"
 #include <cmath>
 
-Circle::Circle(double radius) : Shape(radius * 2) {
+Circle::Circle(double radius) : Shape() {
+    this->radius = radius;
 }
 
 Circle::~Circle() = default;
 
 double Circle::area() {
-    return M_PI * pow((width / 2), 2);
+    return M_PI * pow(radius, 2);
+}
+
+double Circle::getRadius() const {
+    return radius;
+}
+
+void Circle::setRadius(double r) {
+    Circle::radius = r;
 }

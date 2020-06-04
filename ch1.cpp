@@ -19,9 +19,10 @@
 #include <cmath>        // Common Math Functions
 #include <sstream>      // String Streams
 
-#include "shapes/Shape.h"
-#include "shapes/Circle.h"
-#include "shapes/Rectangle.h"
+#include "models/shapes/Shape.h"
+#include "models/Box.h"
+#include "models/shapes/Rectangle.h"
+#include "models/shapes/Circle.h"
 
 //Available in all functions
 int globalVar = 0;
@@ -418,6 +419,17 @@ int main(int argc, char** argv) {
     std::cout << "Square Area: " << shape.area() << std::endl;
     CircleStruct circleStruct(10);
     std::cout << "Square Area: " << circleStruct.area() << std::endl;
+
+    std::cout << "------------------------------------------------------------" << std::endl;
+
+    //Operator overloading on a Box object
+    Box box(10, 10, 10);
+    ++box;
+    std::cout << box.operator const char *() << std::endl;
+    Box box2(5, 5, 5);
+    std::cout << "Box1 + Box2 = " << (box + box2).operator const char *() << std::endl;
+    std::cout << "Box1 == Box2 = " << (box == box2) << std::endl;
+
 
     //When There's no errors the main function should return 0
     return 0;
