@@ -29,36 +29,10 @@
 #include "models/Box.h"
 #include "models/shapes/Rectangle.h"
 #include "models/shapes/Circle.h"
+#include "models/shapes/shapestructs.h"
 
 //Available in all functions
 INTEGER globalVar = 0;
-
-//By Default everything inside a struct will be public unless otherwise specified
-struct ShapeStruct {
-    double width, height;
-
-    ShapeStruct(double width = 1, double height = 1) {
-        this->width = width;
-        this->height = height;
-    }
-
-    double area() {
-        return width * height;
-    }
-
-private:
-    int id;
-};
-
-struct CircleStruct : ShapeStruct {
-    CircleStruct(double radius) {
-        this->width = radius*2;
-        this->height = radius*2;
-    }
-    double area() {
-        return M_PI * pow((width/2), 2);
-    }
-};
 
 //function declaration (only the signature)
 //This declaration is wired up to the real definition by the linker
