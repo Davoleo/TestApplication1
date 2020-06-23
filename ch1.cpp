@@ -7,8 +7,10 @@
  * Multi-line Comment
  */
 
+//What begins with a # is a preprocess statement (they are read before actual code compilation)
+//Include takes everything that is inside of the linked header files and puts them into the main file (literally copy and paste lul)
 #include <cstdlib>      // Bunch of standard utilities
-#include <iostream>     // Basic I/O
+#include <iostream>     // Basic I/O - For example cout cin that output to the console
 #include <limits>       // Mininum - Maximum and limits
 #include <vector>       // Vectors
 #include <array>        // C++ arrays
@@ -19,13 +21,17 @@
 #include <cmath>        // Common Math Functions
 #include <sstream>      // String Streams
 
+//Creates an alias for something
+#define INTEGER int
+
+#include "log.h"
 #include "models/shapes/Shape.h"
 #include "models/Box.h"
 #include "models/shapes/Rectangle.h"
 #include "models/shapes/Circle.h"
 
 //Available in all functions
-int globalVar = 0;
+INTEGER globalVar = 0;
 
 //By Default everything inside a struct will be public unless otherwise specified
 struct ShapeStruct {
@@ -54,11 +60,24 @@ struct CircleStruct : ShapeStruct {
     }
 };
 
+//function declaration (only the signature)
+//This declaration is wired up to the real definition by the linker
+int Multiply(int a, int b);
+
+//First function executed at runtime line-by-line
+//Every cpp file is compiled to a .obj file (by the compiler)
+//All the .obj files are archived together into an .exe file by the linker
 int main(int argc, char** argv) {
+
+    //#if preprocess statements include or exclude some code whether the condition is true or false
+#if 1
+    std::cout << "Conditioned code" << std::endl;
+#endif
 
     //Basic Hello World
     //Cout prints the text on the screen / std::endl puts a carriage return at the end
     // the "<<" operator puts the "Hello World" String in the output stream
+    // << is an overloaded operator (just like a function that is called on cout)
     std::cout << "Hello World" << std::endl;
 
     //Data types
@@ -108,21 +127,8 @@ int main(int argc, char** argv) {
 
     std::cout << "------------------------------------------------------------" << std::endl;
 
-    // just like the main other programming languages
-    //Arithmetic Operations
-    //+, -, *, /, %, --, ++
-    std::cout << "5 + 2 = " << 5 + 2 << std::endl;
-    std::cout << "5 - 2 = " << 5 - 2 << std::endl;
-    std::cout << "5 * 2 = " << 5 * 2 << std::endl;
-    std::cout << "5 / 2 = " << 5 / 2 << std::endl;
-    std::cout << "5 % 2 = " << 5 % 2 << std::endl;
-
-    //Incremental/Decremental
-    int five = 5;
-    std::cout << "5++ = " << five++ << std::endl;
-    std::cout << "++5 = " << ++five << std::endl;
-    std::cout << "5-- = " << five-- << std::endl;
-    std::cout << "--5 = " << --five << std::endl;
+    Log("Test");
+    std::cout << Multiply(5, 8) << std::endl;
 
     std::cout << "------------------------------------------------------------" << std::endl;
 
@@ -430,33 +436,11 @@ int main(int argc, char** argv) {
     std::cout << "Box1 + Box2 = " << (box + box2).operator const char *() << std::endl;
     std::cout << "Box1 == Box2 = " << (box == box2) << std::endl;
 
+    std::cout << "------------------------------------------------------------" << std::endl;
+
+
 
     //When There's no errors the main function should return 0
+    //The main function returns 0 implicitly if you don't return anything
     return 0;
-}
-
-//Custom Functions, Defining a function - parameters can be assigned custom values
-double AddNumbers(double num1 = 0, double num2 = 0) {
-    return num1 + num2;
-}
-
-void AssignAge(int age) {
-    //variables inside of functions are local variable, they can't be accessed out of the function body
-    age = 24;
-}
-
-void assignAge2(int* pAge) {
-    //Assigns a value to the pAge address
-    *pAge = 22;
-}
-
-void DoubleArray(int *arr, int size) {
-    for (int i = 0; i < size; ++i) {
-        arr[i] = arr[i] * 2;
-    }
-}
-
-//Accepts every a shape or its subclasses
-void printArea(Shape& shape) {
-    std::cout << "Area: " << shape.area() << std::endl;
 }
