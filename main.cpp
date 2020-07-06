@@ -9,6 +9,7 @@
 
 //What begins with a # is a preprocess statement (they are read before actual code compilation)
 //Include takes everything that is inside of the linked header files and puts them into the main file (literally copy and paste lul)
+//header files that don't have an extension usually are C++ header files while the ones with .h extension are usually C header files
 #include <cstdlib>      // Bunch of standard utilities
 #include <iostream>     // Basic I/O - For example cout cin that output to the console
 #include <limits>       // Mininum - Maximum and limits
@@ -328,12 +329,14 @@ int main(int argc, char** argv) {
     //hypothenuse (SQRT(X^2 + Y^2))
     std::cout << "hypot(2, 3) = " << std::hypot(2, 3) << std::endl;
 
-    //other functions
+    //other math functions
     //sin, cos, tan, asin, acos, atan, sinh, cosh, tanh, asinh, acosh, atanh
 
     std::cout << "------------------------------------------------------------" << std::endl;
 
-    //Custom Functions: Function Prototype (Makes sure you can call AddNumbers even if it's defined later in the file)
+    //Functions: Are not part of a class
+    //Methods: Are part of a class
+    //Functions: Function Prototype (Makes sure you can call AddNumbers even if it's defined later in the file or in another file)
     double AddNumbers(double num1, double num2);
     void AssignAge(int age);
 
