@@ -54,15 +54,10 @@ int main(int argc, char** argv) {
     // << is an overloaded operator (just like a function that is called on cout)
     std::cout << "Hello World" << std::endl;
 
-    //Data types
-    // Constant double value (can contain decimal points) | Accurate up to 15 digits
-    const double PI = 3.1415926535;
-    // Other double
-    // long double
+    //primitive Data types variables
+    //Stored in memory
 
-    //Contains just one character | 1 byte | enclosed in single quotes
-    char epicChar = 'K';
-    //booleans
+    //booleans (can either be true or false) (takes 1 bit of data although packed inside a byte [the only way to access the value])
     bool sampleBool = true;
     //integers
     int age;
@@ -71,15 +66,26 @@ int main(int argc, char** argv) {
     std::cin >> age;
     // Other ints
     // unsigned versions (can reach double the range of the signed version but cannot store negative numbers (MIN = 0))
-    // short int (at least 16 bits)
-    // long int (at least 32 bits)
-    // long long int (at least 64 bits)
+    unsigned int positiveNum = 123;
+    //any numeric data type can also store chars
+    //char (1 byte of data) | Contains just one character | 1 byte | enclosed in single quotes
+    char epicChar = 'K';
+    //short (2 bytes of data)
+    //int (4 bytes of data) (range: -2b -> 2b) (signed)
+    //long (usually 4 bytes of data)
+    //long long (usually 8 bytes of data)
 
-    //floats: accurate up to 6 decimal points | they take up less memory
-    float overFloat = 3.3333333;
-    float overFloat2 = 3.3333333;
+    // Constant double value (can contain decimal points) | Accurate up to 15 digits | takes 8 bytes of data
+    const double PI = 3.1415926535;
+    //floats: accurate up to 6 decimal points | they take up less memory | takes 4 bytes of data
+    float overFloat = 3.3333333F;
+    float overFloat2 = 3.3333333F;
     //Loss Of precision
     std::printf("OverFloat Sum = %.7F\n", (overFloat + overFloat2));
+
+    //Define Pointers and References
+    //bool*
+    //bool&
 
     //Print Format
     //%c = char | %d = integers | %5d = integer with 5 spaces padding | %.3f = flaoting point value with precision up to the 3rd digit | %s = strings
