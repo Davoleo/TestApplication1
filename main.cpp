@@ -159,40 +159,15 @@ int main(int argc, char** argv) {
     std::cout.setf(std::ios::boolalpha);
     std::cout << "can you vote? " << canVote << std::endl;
 
-    std::cout << "------------------------------------------------------------" << std::endl;
-
-    //Arrays: Store multiple values of the same data type in one single variable
-    //Create an array of five slots
-    int myColors[5];
-    int badColors[5] = {0x026635, 0xFFFFFF, 0x00BFFF, 0xFF1493, 0x09493D};
-
-    //Select single items in arrays by index
-    std::cout << "1st Bad Color: " << badColors[0] << std::endl;
-
-    //Multi-dimensional arrays
-    char sampleName[2][5] = {{'M', 'a', 'r', 'i', 'o'},
-                             {'R', 'o', 's', 's', 'i'}};
-
-    //Print out the second item in the second part of the multidimensional array
-    std::cout << "2nd letter in 2nd array: " << sampleName[1][1] << std::endl;
-
-    //Change an item in a specific array slot by index
-    sampleName[0][4] = 'a';
-    std::cout << "New Value: " << sampleName[0][4] << std::endl;
 
     std::cout << "------------------------------------------------------------" << std::endl;
 
-    //Vectors
-    //Dynamic Arrays (used when you don't know how many items you're going to store)
-    std::vector<int> numVector(2);
-    numVector[0] = 1;
-    numVector[1] = 2;
-    //Adds an item to the end of the vector
-    numVector.push_back(3);
+    //LOOPS
+    //while loops often used when you already have a condition and there's no need to change any variable to make it work
+    //for loops often used when you know how many times you're going to iterate a piece of code (iterating over arrays)
 
-    std::cout << "Vector Size: " << numVector.size() << std::endl;
-
-    std::cout << "------------------------------------------------------------" << std::endl;
+    //CONTROL FLOW STATEMENTS
+    //continue, break and return are control flow statements
 
     //While Loops
     //Looping continue until the condition at the top becomes false
@@ -200,7 +175,7 @@ int main(int argc, char** argv) {
     while (i <= 20) {
         if (i % 2 == 0) {
             i++;
-            //Continue to the new loop
+            //Continue to a new iteration of the loop (condition is still checked and iterator value is still increased)
             continue;
         }
 
@@ -210,22 +185,6 @@ int main(int argc, char** argv) {
 
         std::cout << i << std::endl;
         i++;
-    }
-
-    std::cout << "------------------------------------------------------------" << std::endl;
-
-    //Using while loop with a String Stream
-    std::vector<std::string> words;
-
-    std::stringstream stringStream("Random Words PADORU PADORU");
-    std::string word;
-    while (std::getline(stringStream, word, ' ')) {
-        words.push_back(word);
-    }
-
-    //index-based for loop to iterate over an array
-    for (int j = 0; j < words.size(); ++j) {
-        std::cout << words[j] << std::endl;
     }
 
     std::cout << "------------------------------------------------------------" << std::endl;
@@ -258,6 +217,39 @@ int main(int argc, char** argv) {
     }while (secretNum != guess);
 
     std::cout << "You guessed it!" << std::endl;
+
+    std::cout << "------------------------------------------------------------" << std::endl;
+
+    //POINTERS: Stores an address in memory
+    void assignAge2(int* pAge);
+
+    int age2 = 43;
+    assignAge2(&age2);
+    std::cout << age2 << std::endl;
+
+    //declaring a pointer
+    int* pAge = nullptr;
+    //& is a REFERENCE OPERATOR returns the address for a variable
+    pAge = &age;
+    //Printing the memory address of the pointer
+    std::cout << "Address: " << pAge << std::endl;
+    //Printing the value the memory address points to
+    //* returns the value from a memory address (the exact opposite of &)
+    std::cout << "Value: " << *pAge << std::endl;
+
+    //Pointer to an Array
+    void DoubleArray(int *arr, int size);
+
+    int intArr[] = {1, 2, 3, 4};
+    int* pIntArray = intArr;
+    std::cout << "1st address: " << pIntArray << std::endl;
+    pIntArray++;
+    std::cout << "2nd address: " << pIntArray << std::endl;
+
+    DoubleArray(pIntArray, 4);
+    for (int k = 0; k < 4; ++k) {
+        std::cout << "Value " << k+1 << ": " << intArr[k] << std::endl;
+    }
 
     std::cout << "------------------------------------------------------------" << std::endl;
 
@@ -348,36 +340,16 @@ int main(int argc, char** argv) {
     std::cout << agetest << std::endl;
 
     std::cout << "------------------------------------------------------------" << std::endl;
-    //POINTERS: Stores an address in memory
-    void assignAge2(int* pAge);
 
-    int age2 = 43;
-    assignAge2(&age2);
-    std::cout << age2 << std::endl;
+    //Vectors
+    //Dynamic Arrays (used when you don't know how many items you're going to store)
+    std::vector<int> numVector(2);
+    numVector[0] = 1;
+    numVector[1] = 2;
+    //Adds an item to the end of the vector
+    numVector.push_back(3);
 
-    //declaring a pointer
-    int* pAge = nullptr;
-    //& is a REFERENCE OPERATOR returns the address for a variable
-    pAge = &age;
-    //Printing the memory address of the pointer
-    std::cout << "Address: " << pAge << std::endl;
-    //Printing the value the memory address points to
-    //* returns the value from a memory address (the exact opposite of &)
-    std::cout << "Value: " << *pAge << std::endl;
-
-    //Pointer to an Array
-    void DoubleArray(int *arr, int size);
-
-    int intArr[] = {1, 2, 3, 4};
-    int* pIntArray = intArr;
-    std::cout << "1st address: " << pIntArray << std::endl;
-    pIntArray++;
-    std::cout << "2nd address: " << pIntArray << std::endl;
-
-    DoubleArray(pIntArray, 4);
-    for (int k = 0; k < 4; ++k) {
-        std::cout << "Value " << k+1 << ": " << intArr[k] << std::endl;
-    }
+    std::cout << "Vector Size: " << numVector.size() << std::endl;
 
     std::cout << "------------------------------------------------------------" << std::endl;
     //Exception Handling
@@ -392,6 +364,27 @@ int main(int argc, char** argv) {
     } catch (const char* e) {
         std::cout << "Error: " << e << std::endl;
     }
+
+    std::cout << "------------------------------------------------------------" << std::endl;
+
+    //Arrays: Store multiple values of the same data type in one single variable
+    //Create an array of five slots
+    int myColors[5];
+    int badColors[5] = {0x026635, 0xFFFFFF, 0x00BFFF, 0xFF1493, 0x09493D};
+
+    //Select single items in arrays by index
+    std::cout << "1st Bad Color: " << badColors[0] << std::endl;
+
+    //Multi-dimensional arrays
+    char sampleName[2][5] = {{'M', 'a', 'r', 'i', 'o'},
+                             {'R', 'o', 's', 's', 'i'}};
+
+    //Print out the second item in the second part of the multidimensional array
+    std::cout << "2nd letter in 2nd array: " << sampleName[1][1] << std::endl;
+
+    //Change an item in a specific array slot by index
+    sampleName[0][4] = 'a';
+    std::cout << "New Value: " << sampleName[0][4] << std::endl;
 
     std::cout << "------------------------------------------------------------" << std::endl;
     //Objects and Classes - Fields, Methods
