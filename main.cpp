@@ -21,6 +21,7 @@
 #include <ctime>        // Work with time
 #include <cmath>        // Common Math Functions
 #include <sstream>      // String Streams
+#include <cstring>
 
 //Creates an alias for something
 #define INTEGER int
@@ -220,22 +221,40 @@ int main(int argc, char** argv) {
 
     std::cout << "------------------------------------------------------------" << std::endl;
 
-    //POINTERS: Stores an address in memory
+    //POINTERS: A variable that Stores a memory address [a number] (types are meaningless, cause in memory everything is stored as a number)
+    //Giving a data type to a pointer is just presuming what data type is stored at that address
+    //0 is an invalid value for a memory address (hence you can't read or write to that address [program will crash])
+    //An alias for a pointer to 0 is NULL (#define NULL 0) or nullptr (from C++ 11)
+    void* purePointer = nullptr;
+
+    int ageVar = 8;
+    //Take the address of the variable 8 in memory and store it in the agePtr Pointer - & is a REFERENCE OPERATOR
+    int* agePtr = &ageVar;
+    //Printing the memory address of the pointer
+    std::cout << "Address: " << agePtr << std::endl;
+    //dereferencing the address -> take the actual variable from the pointer
+    //* returns the value from a memory address (the exact opposite of &)
+    *agePtr = 10;
+    //Printing the value the memory address points to
+    std::cout << "Value: " << ageVar << std::endl;
+
+    //Allocates 8 bytes of data (1 byte for every char) and then returns the address to it as a pointer
+    char* buffer = new char[8];
+    //Fills a certain memory address with the second parameters value for a size specified in the third parameter
+    memset(buffer, 0, 8);
+
+    //storing a pointer in memory means that, that pointer might have an address (that's when you get to double and triple pointers)
+    //double pointer
+    char** pointerToBuffer = &buffer;
+
+    //When working with memory this way you should also delete the used memory
+    delete [] buffer;
+
     void assignAge2(int* pAge);
 
     int age2 = 43;
     assignAge2(&age2);
     std::cout << age2 << std::endl;
-
-    //declaring a pointer
-    int* pAge = nullptr;
-    //& is a REFERENCE OPERATOR returns the address for a variable
-    pAge = &age;
-    //Printing the memory address of the pointer
-    std::cout << "Address: " << pAge << std::endl;
-    //Printing the value the memory address points to
-    //* returns the value from a memory address (the exact opposite of &)
-    std::cout << "Value: " << *pAge << std::endl;
 
     //Pointer to an Array
     void DoubleArray(int *arr, int size);
