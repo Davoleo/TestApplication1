@@ -36,6 +36,19 @@
 //Available in all functions
 INTEGER globalVar = 0;
 
+class Player {
+
+private:
+    int x, y;
+    int speed;
+
+public:
+    void move(int xa, int ya) {
+        x += xa * speed;
+        y += ya * speed;
+    }
+};
+
 //function declaration (only the signature)
 //This declaration is wired up to the real definition by the linker
 int Multiply(int a, int b);
@@ -290,7 +303,6 @@ int main(int argc, char** argv) {
     //you can't change a reference to something this code would just set 'a' equals to 'secretNum'
     //ref = secretNum;
 
-
     std::cout << "------------------------------------------------------------" << std::endl;
 
     //Strings
@@ -428,15 +440,25 @@ int main(int argc, char** argv) {
 
     std::cout << "------------------------------------------------------------" << std::endl;
     //Objects and Classes - Fields, Methods
+    //Variables made of class types are called objects (instances of a class)
+    //members are private by default
+    //complex abstraction of objects
     void printArea(Shape& shape);
     Rectangle square(5);
     Circle circle(10);
     printArea(square);
     printArea(circle);
 
+    Player player;
+    //private member
+    //player.x = 5;
+    player.move(5, 2);
+
     std::cout << "------------------------------------------------------------" << std::endl;
 
     //Structs
+    //members are Public by default
+    //Usually used when there's not much functionality to it
     ShapeStruct shape(10, 6);
     std::cout << "Square Area: " << shape.area() << std::endl;
     CircleStruct circleStruct(10);
