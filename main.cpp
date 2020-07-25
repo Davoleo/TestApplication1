@@ -39,6 +39,8 @@ INTEGER globalVar = 0;
 //function declaration (only the signature)
 //This declaration is wired up to the real definition by the linker
 int Multiply(int a, int b);
+void Increment(int* value);
+void Increment(int& value);
 
 //First function executed at runtime line-by-line
 //Every cpp file is compiled to a .obj file (by the compiler)
@@ -269,6 +271,25 @@ int main(int argc, char** argv) {
     for (int k = 0; k < 4; ++k) {
         std::cout << "Value " << k+1 << ": " << intArr[k] << std::endl;
     }
+
+    std::cout << "------------------------------------------------------------" << std::endl;
+
+    //REFERENCES
+    // (They're just pointers in disguise)
+    //A way to reference a real existing variable
+    int a = 5;
+    //Alias for the a variable
+    int& ref = a;
+    ref = 2;
+    log(a); //Will be 2
+
+    //Passing parameters as pointers or references
+    Increment(&a);
+    Increment(a);
+
+    //you can't change a reference to something this code would just set 'a' equals to 'secretNum'
+    //ref = secretNum;
+
 
     std::cout << "------------------------------------------------------------" << std::endl;
 

@@ -21,6 +21,22 @@ double AddNumbers(double num1 = 0, double num2 = 0) {
     return num1 + num2;
 }
 
+/**
+ * @param value number to increment passed by MEMORY ADDRESS (int*) (its change propagates)
+ */
+void Increment(int* value) {
+    //De-Reference the pointer and then increment the value
+    (*value)++;
+}
+
+/**
+ * Does the exact same thing but in a easier way, just passing the reference to a variable
+ */
+void Increment(int& value) {
+    //De-Reference the pointer and then increment the value
+    value++;
+}
+
 void AssignAge(int age) {
     //variables inside of functions are local variable, they can't be accessed out of the function body
     age = 24;
