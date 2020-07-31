@@ -10,4 +10,6 @@ add_executable(
         models/shapes/Circle.cpp models/shapes/Circle.h
         models/shapes/Rectangle.cpp models/shapes/Rectangle.h
         models/Box.h
-        functions.cpp log.h models/shapes/shapestructs.h models/Player.h)
+        functions.cpp
+        models/shapes/shapestructs.h
+        Logger.h)

@@ -4,16 +4,17 @@
 
 #include <iostream>
 #include "models/shapes/Shape.h"
-#include "log.h"
+
+const int functionsID = 143;
+
+void Log(const char* message) {
+std::cout << message << std::endl;
+}
 
 //Function definition  (we declared the signature and defined the body)
 int Multiply(int a, int b) {
     Log("Multiply");
     return a * b;
-}
-
-void Log(const char* message) {
-std::cout << message << std::endl;
 }
 
 //Custom Functions, Defining a function - parameters can be assigned custom values
@@ -56,4 +57,10 @@ void DoubleArray(int *arr, int size) {
 //Accepts every a shape or its subclasses
 void printArea(Shape& shape) {
     std::cout << "Area: " << shape.area() << std::endl;
+}
+
+void sFunction() {
+    static int i = 0;
+    i++;
+    std::cout << i << std::endl;
 }

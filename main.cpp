@@ -26,12 +26,12 @@
 //Creates an alias for something
 #define INTEGER int
 
-#include "log.h"
 #include "models/shapes/Shape.h"
 #include "models/Box.h"
 #include "models/shapes/Rectangle.h"
 #include "models/shapes/Circle.h"
 #include "models/shapes/shapestructs.h"
+#include "Logger.h"
 
 //Available in all functions
 INTEGER globalVar = 0;
@@ -47,6 +47,14 @@ public:
         x += xa * speed;
         y += ya * speed;
     }
+
+    //static variables inside of classes and structs do not belong to the actual object (they're not members of the class)
+    //you can usually refer to them as if they were defined in a namespace that has the same name as the class (Player::count)
+    static int count;
+
+    static void incrementCount() {
+        count++;
+    }
 };
 
 //function declaration (only the signature)
@@ -54,11 +62,14 @@ public:
 int Multiply(int a, int b);
 void Increment(int* value);
 void Increment(int& value);
+void sFunction();
 
 //First function executed at runtime line-by-line
 //Every cpp file is compiled to a .obj file (by the compiler)
 //All the .obj files are archived together into an .exe file by the linker
 int main(int argc, char** argv) {
+
+    Logger logger;
 
     //#if preprocess statements include or exclude some code whether the condition is true or false
 #if 1
@@ -124,7 +135,7 @@ int main(int argc, char** argv) {
 
     std::cout << "------------------------------------------------------------" << std::endl;
 
-    Log("Test");
+    logger.info("Test");
     std::cout << Multiply(5, 8) << std::endl;
 
     std::cout << "------------------------------------------------------------" << std::endl;
@@ -453,6 +464,38 @@ int main(int argc, char** argv) {
     //private member
     //player.x = 5;
     player.move(5, 2);
+
+    logger.setLevel(logger.LOG_LEVEL_WARNING);
+    logger.info("Hello info");
+    logger.warn("HELLO Worldo!");
+    logger.warn("Hello Erroru!");
+
+    std::cout << "------------------------------------------------------------" << std::endl;
+    //The meaning of static:
+    // - outside of a class -
+    //variable/method only linked internally in this translation unit
+    // in case another int variable with the same name is defined elsewhere the linker will not error
+    //As if it was declared private
+    static int staticVar = 5;
+
+    //The meaning of extern:
+    //The linker looks for a variable with the same name inside of an external translation unit and reference that variable
+    extern int functionsID;
+
+    //static variable inside a class
+    Player::count = 25;
+    Player::incrementCount();
+
+    //static in a local scope
+    //lifetime: how long the variable remains in memory
+    //scope
+    //of a variable
+    //Makes the variable initialized one time only even when the function is called multiple times
+    sFunction();
+    sFunction();
+    sFunction();
+    sFunction();
+    sFunction();
 
     std::cout << "------------------------------------------------------------" << std::endl;
 
