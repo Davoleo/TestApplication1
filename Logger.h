@@ -10,31 +10,34 @@
 
 class Logger {
 public:
-    const int LOG_LEVEL_ERROR = 0;
-    const int LOG_LEVEL_WARNING = 1;
-    const int LOG_LEVEL_INFO = 2;
+    enum Level {
+        ERROR = 0,
+        WARNING,
+        INFO
+    };
+
     //Members
 private:
-    int mLogLevel = LOG_LEVEL_INFO;
+    Level mLogLevel = INFO;
 
     //Methods
 public:
-    void setLevel(int level) {
+    void setLevel(Level level) {
         mLogLevel = level;
     }
 
     void error(const char* message) {
-        if (mLogLevel >= LOG_LEVEL_ERROR)
+        if (mLogLevel >= ERROR)
             std::cout << "[ERROR]: " << message << std::endl;
     }
 
     void warn(const char* message) {
-        if (mLogLevel >= LOG_LEVEL_WARNING)
+        if (mLogLevel >= WARNING)
             std::cout << "[WARNING]: " << message << std::endl;
     }
 
     void info(const char* message) {
-        if (mLogLevel >= LOG_LEVEL_INFO)
+        if (mLogLevel >= INFO)
             std::cout << "[INFO]: " << message << std::endl;
     }
 };

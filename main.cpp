@@ -465,7 +465,7 @@ int main(int argc, char** argv) {
     //player.x = 5;
     player.move(5, 2);
 
-    logger.setLevel(logger.LOG_LEVEL_WARNING);
+    logger.setLevel(Logger::Level::WARNING);
     logger.info("Hello info");
     logger.warn("HELLO Worldo!");
     logger.warn("Hello Erroru!");
@@ -506,6 +506,20 @@ int main(int argc, char** argv) {
     std::cout << "Square Area: " << shape.area() << std::endl;
     CircleStruct circleStruct(10);
     std::cout << "Square Area: " << circleStruct.area() << std::endl;
+
+    std::cout << "------------------------------------------------------------" << std::endl;
+
+    //Enums
+    // the : is used to specify what data type the enum actually is (it has to be a non floating-point number)
+    enum Example : unsigned char{
+        Alpha,
+        Beta,
+        Gamma,
+        Delta,
+        Epsilon
+    };
+
+    Example value = Gamma;
 
     std::cout << "------------------------------------------------------------" << std::endl;
 
