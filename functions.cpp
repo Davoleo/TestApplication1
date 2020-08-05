@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include "models/shapes/Shape.h"
+#include "models/shapes/Printable.h"
 
 const int functionsID = 143;
 
@@ -63,4 +64,8 @@ void sFunction() {
     static int i = 0;
     i++;
     std::cout << i << std::endl;
+}
+
+void printClassName(Printable* obj) {
+
 }

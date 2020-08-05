@@ -43,6 +43,26 @@ private:
     int speed;
 
 public:
+    //Constructors
+    //Handle private members initialization and is called whenever you create a new instance of a class
+    Player() {
+        x = 0;
+        y = 0;
+        speed = 0;
+    }
+
+    Player(int x, int y, int speed) {
+        this->x = x;
+        this->y = y;
+        this->speed = speed;
+    }
+
+    //Destructor
+    //Is called at the end of a scope where the object instance should be deleted and used memory should be cleaned
+    ~Player() {
+        std::cout << "Player Was DESTROYED!" << std::endl;
+    }
+
     void move(int xa, int ya) {
         x += xa * speed;
         y += ya * speed;

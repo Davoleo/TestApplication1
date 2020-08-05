@@ -30,6 +30,10 @@ public:
 
     double area() override;
 
+    std::string getClassName() override {
+        return "Player";
+    }
+
 protected:
     double height;
     double width;

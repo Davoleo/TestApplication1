@@ -6,7 +6,9 @@
 #ifndef TESTAPPLICATION1_SHAPE_H
 #define TESTAPPLICATION1_SHAPE_H
 
-class Shape {
+#include "Printable.h"
+
+class Shape : Printable {
 
 //Accessible to anything that has access to the object
 public:
@@ -14,16 +16,22 @@ public:
     static int count;
 
     //Deconstructor - Called anytime the object is deleted or not used anymore
-    virtual ~Shape();
+    ~Shape() = default;
 
     //Implementing in Shape.cpp doesn't work :(
     static int getCount() {
         return count;
     }
 
-    //Marked as virtual because it's not defined in the Shape class but defined in its child classes
-    //The fact this is an abstract class is defined by "= 0"
+    //Marked as virtual because it can be overridden by subclasses
+    //Virtual functions come with the runtime cost of creating the VTable that links methods to the overridden version at runtime (memory)
+    //and that you're also always going through the VTable to know what method to call
+    //Setting the function equals to 0 makes it not implemented which means it becomes mandatory for subclasses to override it and implement it
     virtual double area() = 0;
+
+    std::string getClassName() override {
+        return "Shape";
+    }
 
 //Accessible inside of the class itself and from child classes
 protected:
