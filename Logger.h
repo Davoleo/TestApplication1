@@ -16,12 +16,17 @@ public:
         INFO
     };
 
-    //Members
+    //Can only be accessed by this class or "friend classes"
 private:
     Level mLogLevel = INFO;
 
-    //Methods
+    //Can be accessed by this class and all descendants
+protected:
+    Level levelMember = Level::INFO;
+
+    //Can be accessed anywhere in the code
 public:
+
     void setLevel(Level level) {
         mLogLevel = level;
     }
