@@ -84,6 +84,9 @@ void Increment(int* value);
 void Increment(int& value);
 void sFunction();
 
+//Define the static variable (avoid linker errors)
+int Player::count;
+
 //First function executed at runtime line-by-line
 //Every cpp file is compiled to a .obj file (by the compiler)
 //All the .obj files are archived together into an .exe file by the linker
@@ -450,9 +453,44 @@ int main(int argc, char** argv) {
 
     std::cout << "------------------------------------------------------------" << std::endl;
 
-    //Arrays: Store multiple values of the same data type in one single variable
+    //Raw Arrays: A collection of multiple variables (usually of the same type) under one single name
+
+    //there is no way to find out the length of a raw array except using sizeof() [which is dangerous because it's compiler dependant]
+    //so you need to keep track of the length of the array yourself (using things like constants)
+    static const int myColorsLength = 5;
+
     //Create an array of five slots
-    int myColors[5];
+    int myColors[myColorsLength];
+    //First Element
+    myColors[0] = 0x6C6C6C;
+    //Last Element
+    myColors[4] = 0xEC1258;
+
+    //This causes a MemoryAccessViolation Error in Debug mode (because we're trying to edit at a memory address which isn't part of the array)
+    //However in production mode this doesn't throw any error, which may lead to some serious bugs
+    //myColors[-1] = 2;
+    //myColors[5] = 2;
+
+    //Arrays can be considered pointers to memory address that contain multiple values
+    int* myColorsPtr = myColors;
+    //Array logic can be rewritten using pointers
+    myColors[2] = 5;
+    //Increment the pointer by 2 (adds 2 times the size of the integer) and then assign it to five
+    *(myColorsPtr + 2) = 5;
+
+    //Since it was created in the heap it will remain alive even out of this scope until the program ends or it's manually deleted by the code
+    //you usually do this when you're:
+    //- returning something from a function (and it's not a pointer)
+    //if you don't need to create things in the heap then you should avoid it since it's stored in another memory address and causes jumping between different addresses (affects performance I guess)
+    int* heapArray = new int[5];
+    delete[] heapArray;
+
+    //Looping over an array to set values
+    for (int j = 0; j < 5; ++j) {
+        std::cout << "Element " << j << ": " << myColors[j] << std::endl;
+        myColors[j] = 2;
+    }
+
     int badColors[5] = {0x026635, 0xFFFFFF, 0x00BFFF, 0xFF1493, 0x09493D};
 
     //Select single items in arrays by index
@@ -468,6 +506,13 @@ int main(int argc, char** argv) {
     //Change an item in a specific array slot by index
     sampleName[0][4] = 'a';
     std::cout << "New Value: " << sampleName[0][4] << std::endl;
+
+    //Using C++11 standard arrays
+    std::array<int, 5> standardArray{};
+
+    for (int& j : standardArray) {
+        j = 333;
+    }
 
     std::cout << "------------------------------------------------------------" << std::endl;
     //Objects and Classes - Fields, Methods
