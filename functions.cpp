@@ -69,3 +69,9 @@ void sFunction() {
 void printClassName(Printable* obj) {
 
 }
+
+//When you pass a string into a function you should use a const reference so that the string isn't copied over by value
+// (slow and heavy process)
+void printString(const std::string& string) {
+    std::cout << string << std::endl;
+}
