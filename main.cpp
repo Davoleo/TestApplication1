@@ -488,7 +488,9 @@ int main(int argc, char** argv) {
 
     //CStyle String
     //Most people just make these constant because strings are, by nature, immutable
-    //However if you need to edit specific characters inside the string you can write it as a variable
+    // (using it as a variable might cause undefined behaviour [not reliable])
+    //if you really want to edit a string you need to manipulate it as an array instead of a pointer
+    //String literals are always store in readonly memory
 
     //String are represented in memory as a series of ASCII byte codes with a null termination char ("00")
     const char* cString = "Davoleo";
@@ -529,6 +531,34 @@ int main(int argc, char** argv) {
     std::cout << "Substring: " << string1.substr(6, 6) << std::endl;
     //Converting a number to a string
     std::string stringNum = std::to_string(1+3);
+
+    //String literals (in the most basic example they become const char arrays)
+    //The size of these arrays are one than the string actual length because of the null terminator char at the end
+    const char* name = "Davo\0leo"; //Manually inserting a null terminator breaks some functions like strlen
+    std::cout << "Davoleo Broken Length: " << strlen(name) << std::endl;
+
+    //to enforce a normal const char literal you use 'u8' in front of the string
+
+    //Define a string literal made of wide characters
+    //can be 2 or 4 bytes long character (usually 2 on Windows and 4 on Unix)
+    const wchar_t* widePutinString = L"Wide Melonpan is here to steal your waifus";
+    //2 bytes long character
+    const char16_t* char16String = u"";
+    //4 bytes long characters
+    const char32_t* char32String = U"";
+
+    //Since C++14 you can write std string literals
+    //The s operator at the end convers the CString to an std::string
+    using namespace std::string_literals;
+    std::string literallyString = "dsakdjdasd"s;
+    std::wstring wliteralString = L"djaskdjasdk"s;
+
+    //R stands for RAW (botch)
+    const char* ignoreEscapes = R"(Multiline string
+that
+ignores
+escapeeeee
+characters)";
 
     std::cout << "------------------------------------------------------------" << std::endl;
 
