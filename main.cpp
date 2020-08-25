@@ -41,6 +41,8 @@ class Player {
 private:
     int x, y;
     int speed;
+    std::string name;
+    mutable bool muuuutable;
 
 public:
     //Constructors
@@ -66,6 +68,18 @@ public:
     void move(int xa, int ya) {
         x += xa * speed;
         y += ya * speed;
+    }
+
+    //CONST at the end of a method signature means that it's promising to only read values from the class and it's not going to make any change
+    int getX() const {
+        //Although this method can still change mutable variables
+        muuuutable = true;
+        return x;
+    }
+
+    const std::string& getName() const {
+        muuuutable = false;
+        return name;
     }
 
     //static variables inside of classes and structs do not belong to the actual object (they're not members of the class)
@@ -559,6 +573,34 @@ that
 ignores
 escapeeeee
 characters)";
+
+    std::cout << "------------------------------------------------------------" << std::endl;
+
+    //CONSTANTS
+
+    int variableInt = 5;
+    variableInt = 2; // Can be changed
+
+    const int constantInt = 5;
+    //constantInt = 2; Cannot be changed
+
+    //If const is put after the type specification it works the opposite way (content is variable but address is constant)
+    //You can also put 2 const to make both the content and the address constant
+    const int* constantPointer = new int;
+    //*constantPointer = 2; since the pointer is declared as const you can't change its CONTENTS
+    //This breaks the constant promise of constantInt and could resolve in crashes
+    constantPointer = (int*)&constantInt; // but you can change the address at which the pointer points
+
+    Player constGetter;
+    //This is a const method, it's not going to change the private member X in any way
+    constGetter.getX();
+
+    int x = 9;
+    //Allows to edit variable passed by value in lambdas if the lambda is declared as mutable
+    auto lamda = [=]() mutable {
+        x++;
+        std::cout << x << std::endl;
+    };
 
     std::cout << "------------------------------------------------------------" << std::endl;
 
