@@ -217,12 +217,10 @@ int main(int argc, char** argv) {
             std::cout << "Hello" << std::endl;
     }
 
-    //Ternary Operator
+    //Ternary Operator (Conditional Assignment)
     //variable = condition ? ifTrue : ifFalse
-    bool canVote = age >= 18 ? true : false;
-    std::cout.setf(std::ios::boolalpha);
-    std::cout << "can you vote? " << canVote << std::endl;
-
+    int speed = age >= 10 ? 5 : 20;
+    std::cout << "what's your speed? " << speed << std::endl;
 
     std::cout << "------------------------------------------------------------" << std::endl;
 
