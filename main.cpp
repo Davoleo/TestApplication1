@@ -602,7 +602,7 @@ characters)";
 
     std::cout << "------------------------------------------------------------" << std::endl;
 
-    //Objects and Classes - Fields, Methods
+    //Objects, Classes, Fields and Methods
     //Variables made of class types are called objects (instances of a class)
     //members are private by default
     //complex abstraction of objects
@@ -621,6 +621,34 @@ characters)";
     logger.info("Hello info");
     logger.warn("HELLO Worldo!");
     logger.warn("Hello Erroru!");
+
+    //Initialization
+
+    //On the STACK or the HEAP
+    //Stack variables have an automatic lifespan that ends whenever the execution goes out of scope (the stack pops and all the memory is freed)
+    Box stackBox = Box(1, 2, 3, "Boxx");
+    stackBox.getBoxName();
+
+    //Heap variables remain there !!until you explicitly free the memory!!
+    //You may have to allocate on the heap when either you want the variable to persist across scopes and when you have
+    //to allocate a big quantity of memory that wouldn't fit in the stack (usually 1/2MB)
+    //Allocating on the heap takes longer than allocating on the stack (because it needs to find a pointer to a location in the memory that has enough space)
+    //In Java EVERYTHING is allocated on the heap - in C# all classes are allocated on the heap (structs are allocated on the stack instead)
+    Box* boxPointer;
+    {
+        //The location on the heap is returned (not the actual object)
+        //Allocates memory on the heap (using C function 'malloc()') AND calles the constructor
+        Box* secondBox = new Box("BoiBox");
+        boxPointer = secondBox;
+        std::cout << secondBox->getBoxName() << std::endl;
+
+        int* heapArray = new int[5];
+        delete [] heapArray;
+    }
+
+    //deleting secondBox allocated on the heap after the scope is closed
+    //frees memory on the heap (using C function 'free()') AND calles the destructor
+    delete boxPointer;
 
     std::cout << "------------------------------------------------------------" << std::endl;
     //The meaning of static:
@@ -676,12 +704,12 @@ characters)";
     std::cout << "------------------------------------------------------------" << std::endl;
 
     //Operator overloading on a Box object
-    Box box(10, 10, 10);
-    ++box;
-    std::cout << box.operator const char *() << std::endl;
-    Box box2(5, 5, 5);
-    std::cout << "Box1 + Box2 = " << (box + box2).operator const char *() << std::endl;
-    std::cout << "Box1 == Box2 = " << (box == box2) << std::endl;
+    Box box(10, 10, 10, "10Box");
+    ++stackBox;
+    std::cout << stackBox.operator const char *() << std::endl;
+    Box box2(5, 5, 5, "5Box");
+    std::cout << "Box1 + Box2 = " << (stackBox + box2).operator const char *() << std::endl;
+    std::cout << "Box1 == Box2 = " << (stackBox == box2) << std::endl;
 
     std::cout << "------------------------------------------------------------" << std::endl;
 

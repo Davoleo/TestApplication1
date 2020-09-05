@@ -9,29 +9,39 @@
 #include <sstream>
 
 class Box {
-public:
+private:
     double height;
     double width;
     double depth;
-    std::string boxString;
+    std::string boxName;
 
+public:
     Box() {
-        this->height = 1;
-        this->width = 1;
-        this->depth = 1;
+        height = 1;
+        width = 1;
+        depth = 1;
+        boxName = "Unknown";
     }
 
     //Member initializer Lists
     //Should always be in the same order as their declaration
     //This also optimizes code in case of non primitive variable initialization because otherwise objects are initialized twice
     //(once with the default constructor and the second time with the constructor you call)
-    Box(double size) : height(size), width(size), depth(size)
+    Box(double size) : height(size), width(size), depth(size), boxName("Unknown")
     {}
 
-    Box(double height, double width, double depth) {
+    Box(const char* name) : height(1), width(1), depth(1), boxName(name)
+    {}
+
+    Box(double height, double width, double depth, const char* name) {
         this->height = height;
         this->width = width;
         this->depth = depth;
+        this->boxName = name;
+    }
+
+    const std::string &getBoxName() const {
+        return boxName;
     }
 
     //Unary Operator
@@ -45,8 +55,8 @@ public:
     explicit operator const char* () {
         std::ostringstream boxStream;
         boxStream << "Box: " << height << ", " << width << ", " << depth;
-        boxString = boxStream.str();
-        return boxString.c_str();
+        boxName = boxStream.str();
+        return boxName.c_str();
     }
 
     //Binary Operator
