@@ -5,13 +5,14 @@
 #ifndef TESTAPPLICATION1_BOX_H
 #define TESTAPPLICATION1_BOX_H
 
-
 #include <string>
 #include <sstream>
 
 class Box {
 public:
-    double height, width, depth;
+    double height;
+    double width;
+    double depth;
     std::string boxString;
 
     Box() {
@@ -19,6 +20,13 @@ public:
         this->width = 1;
         this->depth = 1;
     }
+
+    //Member initializer Lists
+    //Should always be in the same order as their declaration
+    //This also optimizes code in case of non primitive variable initialization because otherwise objects are initialized twice
+    //(once with the default constructor and the second time with the constructor you call)
+    Box(double size) : height(size), width(size), depth(size)
+    {}
 
     Box(double height, double width, double depth) {
         this->height = height;
