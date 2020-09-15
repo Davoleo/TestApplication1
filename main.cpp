@@ -101,6 +101,14 @@ void sFunction();
 //Define the static variable (avoid linker errors)
 int Player::count;
 
+//Overriding the << operator in std
+//It's sorta like overriding toString() in Java
+std::ostream& operator << (std::ostream& stream, const Box& box)
+{
+    stream << "Box Name: " << box.getBoxName() << "\tBox Size: (" << box.getWidth() << ", " << box.getHeight() << ", " << box.getDepth() << ")";
+    return stream;
+}
+
 //First function executed at runtime line-by-line
 //Every cpp file is compiled to a .obj file (by the compiler)
 //All the .obj files are archived together into an .exe file by the linker
@@ -707,12 +715,14 @@ characters)";
 
     std::cout << "------------------------------------------------------------" << std::endl;
 
-    //Operator overloading on a Box object
+    //Operator overloading (define or change the behaviour of an operator)
+    //Operators: Symbols that allow developers to apply something they usually replace functions
+
     Box box(10, 10, 10, "10Box");
     ++stackBox;
-    std::cout << stackBox.operator const char *() << std::endl;
+    std::cout << stackBox << std::endl;
     Box box2(5, 5, 5, "5Box");
-    std::cout << "Box1 + Box2 = " << (stackBox + box2).operator const char *() << std::endl;
+    std::cout << "Box1 + Box2 = " << (stackBox + box2) << std::endl;
     std::cout << "Box1 == Box2 = " << (stackBox == box2) << std::endl;
 
     std::cout << "------------------------------------------------------------" << std::endl;

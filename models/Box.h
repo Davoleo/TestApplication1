@@ -45,19 +45,24 @@ public:
         return boxName;
     }
 
+    double getHeight() const {
+        return height;
+    }
+
+    double getWidth() const {
+        return width;
+    }
+
+    double getDepth() const {
+        return depth;
+    }
+
     //Unary Operator
     Box& operator ++ () {
         height++;
         width++;
         depth++;
         return *this;
-    }
-
-    explicit operator const char* () {
-        std::ostringstream boxStream;
-        boxStream << "Box: " << height << ", " << width << ", " << depth;
-        boxName = boxStream.str();
-        return boxName.c_str();
     }
 
     //Binary Operator
@@ -69,8 +74,20 @@ public:
         return boxSum;
     }
 
+    Box operator * (const Box& multiplierBox) const {
+        Box result;
+        result.height = this->height * multiplierBox.height;
+        result.width = this->width * multiplierBox.width;
+        result.depth = this->depth * multiplierBox.depth;
+        return result;
+    }
+
     bool operator == (const Box& otherBox) const {
-        return (this->height == otherBox.height) && (this->width == otherBox.width) && (this->depth == otherBox.depth);
+        return (height == otherBox.height) && (width == otherBox.width) && (depth == otherBox.depth);
+    }
+
+    bool operator != (const Box& otherBox) const {
+        return !(*this == otherBox);
     }
 };
 
