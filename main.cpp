@@ -170,6 +170,10 @@ int main(int argc, char** argv) {
     //stoi() converts a String to an Integer
     int n = stoi(emptyString);
 
+    //Implicit conversion from string to Box because there's a constructor that takes one size
+    //Implicit conversion can only happen once contemporarily
+    Box sizeBox = 22;
+
     std::cout << "------------------------------------------------------------" << std::endl;
 
     logger.info("Test");
@@ -712,8 +716,6 @@ characters)";
     std::cout << "Box1 == Box2 = " << (stackBox == box2) << std::endl;
 
     std::cout << "------------------------------------------------------------" << std::endl;
-
-
 
     //When There's no errors the main function should return 0
     //The main function returns 0 implicitly if you don't return anything

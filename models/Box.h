@@ -27,10 +27,11 @@ public:
     //Should always be in the same order as their declaration
     //This also optimizes code in case of non primitive variable initialization because otherwise objects are initialized twice
     //(once with the default constructor and the second time with the constructor you call)
-    Box(double size) : height(size), width(size), depth(size), boxName("Unknown")
+    Box(double size) : height(size), width(size), depth(size), boxName("Unknown") // NOLINT(google-explicit-constructor)
     {}
 
-    Box(const char* name) : height(1), width(1), depth(1), boxName(name)
+    //The explicit keyword disables the default behaviour of implicit calls to constructors
+    explicit Box(const char* name) : height(1), width(1), depth(1), boxName(name)
     {}
 
     Box(double height, double width, double depth, const char* name) {
