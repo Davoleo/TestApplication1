@@ -347,7 +347,7 @@ int main(int argc, char** argv) {
 
     //REFERENCES
     // (They're just pointers in disguise)
-    //A way to reference a real existing variable
+    //A way to reference a real existing variable (a memory address without all the crap that pointers bring)
     int a = 5;
     //Alias for the a variable
     int& ref = a;
@@ -355,6 +355,8 @@ int main(int argc, char** argv) {
     log(a); //Will be 2
 
     //Passing parameters as pointers or references
+    //it's an easy way of passing the address of a variable instead of taking a pointer parameter and then dereferencing it
+    //you can pass directly the a variable without taking its address
     Increment(&a);
     Increment(a);
 

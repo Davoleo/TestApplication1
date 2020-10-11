@@ -34,11 +34,16 @@ public:
     explicit Box(const char* name) : height(1), width(1), depth(1), boxName(name)
     {}
 
+    //The meaning of THIS:
+    //'this' is a pointer to the current object instance that the method belongs to
+    //it's only usable in non-static method of course
     Box(double height, double width, double depth, const char* name) {
+        Box* box = this;
+
         this->height = height;
         this->width = width;
         this->depth = depth;
-        this->boxName = name;
+        box->boxName = name;
     }
 
     const std::string &getBoxName() const {
