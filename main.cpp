@@ -91,6 +91,20 @@ public:
     }
 };
 
+class ScopedPointer {
+private:
+    Box* boxPtr;
+public:
+    ScopedPointer(Box* pointer) : boxPtr(pointer)
+    {
+    }
+
+    ~ScopedPointer()
+    {
+        delete boxPtr;
+    }
+};
+
 //function declaration (only the signature)
 //This declaration is wired up to the real definition by the linker
 int Multiply(int a, int b);
@@ -640,6 +654,7 @@ characters)";
 
     //On the STACK or the HEAP
     //Stack variables have an automatic lifespan that ends whenever the execution goes out of scope (the stack pops and all the memory is freed)
+    //The Stack is like java's Stack data structure, a pile of stuff in which you can only interact with the first element of it and to interact with the element below you have to pop the first element
     Box stackBox = Box(1, 2, 3, "Boxx");
     stackBox.getBoxName();
 
@@ -658,6 +673,10 @@ characters)";
 
         int* heapArray = new int[5];
         delete [] heapArray;
+
+        //Allocating on the heap although automating the destruction of the object once the execution goes out of scope
+        ScopedPointer heapBox = new Box("AutomatedHeapBox");
+        //The ScopedPointer class wraps the pointer so that when the destructor on the wrapper is called it destroys the heap allocated Box
     }
 
     //deleting secondBox allocated on the heap after the scope is closed
