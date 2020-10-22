@@ -21,6 +21,7 @@
 #include <ctime>        // Work with time
 #include <cmath>        // Common Math Functions
 #include <sstream>      // String Streams
+#include <memory>       // Smart Pointers
 #include <cstring>
 
 //Creates an alias for something
@@ -51,12 +52,14 @@ public:
         x = 0;
         y = 0;
         speed = 0;
+        std::cout << "Player has been created!" << std::endl;
     }
 
     Player(int x, int y, int speed) {
         this->x = x;
         this->y = y;
         this->speed = speed;
+        std::cout << "Player has been created!" << std::endl;
     }
 
     //Destructor
@@ -88,6 +91,10 @@ public:
 
     static void incrementCount() {
         count++;
+    }
+
+    void print() const {
+        std::cout << "Player's Name: " << name << "\nPlayer's Position: " << x << ", " << y << "\nPlayer's Speed: " << speed << std::endl;
     }
 };
 
@@ -376,6 +383,39 @@ int main(int argc, char** argv) {
 
     //you can't change a reference to something this code would just set 'a' equals to 'secretNum'
     //ref = secretNum;
+
+    std::cout << "------------------------------------------------------------" << std::endl;
+
+    //SMART POINTERS
+    //Automate the process of the "delete"
+
+    //Unique pointers are scoped pointers to memory blocks that are freed whenever the pointer goes out of scope
+    //They're called unique because you can't copy them, if you copied them you would have to pointers to the same block of memory and once one of them frees
+    //the memory they're pointing to when they're destroyed then the other one still points to some memory that was already freed
+    std::cout << "--- Entering Unique Pointers Scope ---" << std::endl;
+    {
+        std::unique_ptr<Player> player = std::make_unique<Player>();
+        player->print();
+        //This is not goint to work because the copy constructor is deleted in the unique_pointer class to avoid the problems described above
+        //std::unique_ptr<Player> p0 = player;
+    }
+    //The player unique pointer will be destroyed here
+
+    //Shared pointers are not unique and there can be multiple ones that can point to a block of memory
+    //How they work is that they keep a count of pointer references that are active and the memory block will be freed only when this count reaches 0
+    std::cout << "--- Entering Shared Pointers Scope ---" << std::endl;
+    {
+        std::shared_ptr<Player> p0;
+        {
+            std::shared_ptr<Player> sharedPlayer = std::make_shared<Player>();
+            p0 = sharedPlayer;
+
+            //Weak Pointers can be assigned to shared pointers but they do not increase the reference count of the shared pointer
+            //Meaning that they don't stop the block of memory they're pointing to from being freed, however you can ask them if the pointer is still valid
+            std::weak_ptr<Player> weakPlayer = p0;
+        }
+    }
+
 
     std::cout << "------------------------------------------------------------" << std::endl;
 
