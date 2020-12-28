@@ -12,4 +12,4 @@ add_executable(
         models/Box.h
         functions.cpp
         models/shapes/shapestructs.h
-        Logger.h models/shapes/Printable.h)
+        Logger.h models/shapes/Printable.h models/String.h)

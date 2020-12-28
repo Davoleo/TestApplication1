@@ -33,6 +33,7 @@
 #include "models/shapes/Circle.h"
 #include "models/shapes/shapestructs.h"
 #include "Logger.h"
+#include "models/String.h"
 
 //Available in all functions
 INTEGER globalVar = 0;
@@ -127,6 +128,13 @@ int Player::count;
 std::ostream& operator << (std::ostream& stream, const Box& box)
 {
     stream << "Box Name: " << box.getBoxName() << "\tBox Size: (" << box.getWidth() << ", " << box.getHeight() << ", " << box.getDepth() << ")";
+    return stream;
+}
+
+std::ostream& operator << (std::ostream& stream, const String& string)
+{
+    //Can Access buffer private variable because this operator is a friend of the class
+    stream << string.buffer;
     return stream;
 }
 
@@ -387,7 +395,7 @@ int main(int argc, char** argv) {
     std::cout << "------------------------------------------------------------" << std::endl;
 
     //SMART POINTERS
-    //Automate the process of the "delete"
+    //Automate the process of freeing used memory "delete"
 
     //Unique pointers are scoped pointers to memory blocks that are freed whenever the pointer goes out of scope
     //They're called unique because you can't copy them, if you copied them you would have to pointers to the same block of memory and once one of them frees
@@ -416,6 +424,14 @@ int main(int argc, char** argv) {
         }
     }
 
+    std::cout << "------------------------------------------------------------" << std::endl;
+
+    //Copying and copy Constructors
+    String myString = "Custom String class pog";
+    //This performs a copy - although it also copies a pointer that points to the same memory block as the other string buffer
+    //Called Shallow Copy (when it's not specified otherwise in the class through a copy constructor)
+    String myString2 = myString;
+    std::cout << myString << std::endl;
 
     std::cout << "------------------------------------------------------------" << std::endl;
 

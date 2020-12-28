@@ -5,6 +5,7 @@
 #include <iostream>
 #include "models/shapes/Shape.h"
 #include "models/shapes/Printable.h"
+#include "models/String.h"
 
 const int functionsID = 143;
 
@@ -73,5 +74,9 @@ void printClassName(Printable* obj) {
 //When you pass a string into a function you should use a const reference so that the string isn't copied over by value
 // (slow and heavy process)
 void printString(const std::string& string) {
+    std::cout << string << std::endl;
+}
+
+void printString(const String& string) {
     std::cout << string << std::endl;
 }
