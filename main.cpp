@@ -111,6 +111,16 @@ public:
     {
         delete boxPtr;
     }
+
+    //You can override the arrow operator to return a different thing so that you can use it directly on the Box pointer for example
+    Box* operator->() {
+        return boxPtr;
+    }
+
+    //A version for const pointers
+    const Box* operator->() const {
+        return boxPtr;
+    }
 };
 
 //function declaration (only the signature)
@@ -738,6 +748,30 @@ characters)";
     //deleting secondBox allocated on the heap after the scope is closed
     //frees memory on the heap (using C function 'free()') AND calles the destructor
     delete boxPointer;
+
+    std::cout << "-----------------  The Arrow Operator  ---------------------" << std::endl;
+
+    //Works just fine with objects
+    Box boxObj;
+    boxObj.getBoxName();
+
+    Box* boxPtr = &boxObj;
+    //boxPtr.getBoxName(); Wont't work
+    (*boxPtr).getDepth(); //You can do it by dereference it although there's a shortcut which is ...
+
+    //The arrow operator ->
+    std::cout << "Box Pointer Depth: " << boxPtr->getDepth() << std::endl;
+
+    //Overriding the -> operator
+    ScopedPointer scopedPtr = new Box();
+    std::cout << "Scoped Box Pointer Width: " << scopedPtr->getWidth() << std::endl;
+
+    //get The offset in memory of a specific field in a struct
+    //Casting the null pointer to a Box pointer and getting the depth field trhough the arrow operator and then take the address of it and cast it to an int
+    //int depthFieldOffset = (int) &((Box*)nullptr)->depth;
+    //this operation is more easily done by using the offsetof macro
+    std::cout << "height field offset in ShapeStruct: " << offsetof(ShapeStruct, height) << std::endl;
+
 
     std::cout << "------------------------------------------------------------" << std::endl;
     //The meaning of static:
