@@ -221,20 +221,16 @@ int main(int argc, char** argv) {
     //Implicit conversion can only happen once contemporarily
     Box sizeBox = 22;
 
-    std::cout << "------------------------------------------------------------" << std::endl;
-
     logger.info("Test");
     std::cout << Multiply(5, 8) << std::endl;
 
-    std::cout << "------------------------------------------------------------" << std::endl;
+    std::cout << "----------------------- Casting ---------------------------" << std::endl;
 
-    //Casting
     std::cout << "4 / 5 = " << 4 / 5 << std::endl;
     std::cout << "4 / 5 = " << (float) 4 / 5 << std::endl;
 
-    std::cout << "------------------------------------------------------------" << std::endl;
+    std::cout << "------------------------ If Statement----------------------" << std::endl;
 
-    //If Statement
     //Conditional Operators: ==, !=, >, <, >=, <=
     //Logical Operators: &&, ||, !
     bool isDrunk = false;
@@ -273,7 +269,7 @@ int main(int argc, char** argv) {
     int speed = age >= 10 ? 5 : 20;
     std::cout << "what's your speed? " << speed << std::endl;
 
-    std::cout << "------------------------------------------------------------" << std::endl;
+    std::cout << "------------------------- LOOPS ------------------------------" << std::endl;
 
     //LOOPS
     //while loops often used when you already have a condition and there's no need to change any variable to make it work
@@ -300,7 +296,7 @@ int main(int argc, char** argv) {
         i++;
     }
 
-    std::cout << "------------------------------------------------------------" << std::endl;
+    std::cout << "----------------- CArrays and std::arrays ----------------" << std::endl;
 
     //It's bad practice to use range-based for loops over CArrays (AFFECTS PERFORMANCE)
     int arr3[] = {1, 2, 3};
@@ -311,7 +307,7 @@ int main(int argc, char** argv) {
         std::cout << x << std::endl;
     }
 
-    std::cout << "------------------------------------------------------------" << std::endl;
+    std::cout << "---------------------- Do While Loop -----------------------" << std::endl;
 
     //Do While Loop
     //Random number guessing game
@@ -331,7 +327,7 @@ int main(int argc, char** argv) {
 
     std::cout << "You guessed it!" << std::endl;
 
-    std::cout << "------------------------------------------------------------" << std::endl;
+    std::cout << "------------------------ POINTERS --------------------------" << std::endl;
 
     //POINTERS: A variable that Stores a memory address [a number] (types are meaningless, cause in memory everything is stored as a number)
     //Giving a data type to a pointer is just presuming what data type is stored at that address
@@ -382,7 +378,7 @@ int main(int argc, char** argv) {
         std::cout << "Value " << k+1 << ": " << intArr[k] << std::endl;
     }
 
-    std::cout << "------------------------------------------------------------" << std::endl;
+    std::cout << "------------------------ REFERENCES ------------------------" << std::endl;
 
     //REFERENCES
     // (They're just pointers in disguise)
@@ -402,7 +398,7 @@ int main(int argc, char** argv) {
     //you can't change a reference to something this code would just set 'a' equals to 'secretNum'
     //ref = secretNum;
 
-    std::cout << "------------------------------------------------------------" << std::endl;
+    std::cout << "------------------------- SMART POINTERS -------------------" << std::endl;
 
     //SMART POINTERS
     //Automate the process of freeing used memory "delete"
@@ -434,7 +430,7 @@ int main(int argc, char** argv) {
         }
     }
 
-    std::cout << "------------------------------------------------------------" << std::endl;
+    std::cout << "------------- Copying and Copy Consctructors ---------" << std::endl;
 
     //Copying and copy Constructors
     String myString = "Custom String class pog";
@@ -443,7 +439,7 @@ int main(int argc, char** argv) {
     String myString2 = myString;
     std::cout << myString << std::endl;
 
-    std::cout << "------------------------------------------------------------" << std::endl;
+    std::cout << "-----------------------Char Functions ----------------------" << std::endl;
 
     //Char Functions
     char letterj = 'j';
@@ -455,7 +451,7 @@ int main(int argc, char** argv) {
     std::cout << "Is '5' a number: " << std::isdigit(char5) << std::endl;
     std::cout << "Is ' ' a space: " << std::isspace(space) << std::endl;
 
-    std::cout << "------------------------------------------------------------" << std::endl;
+    std::cout << "------------------- Math Functions --------------------------" << std::endl;
 
     //Math Functions
     std::cout << "abs(-10) = " << std::abs(-10) << std::endl;
@@ -484,7 +480,7 @@ int main(int argc, char** argv) {
     //other math functions
     //sin, cos, tan, asin, acos, atan, sinh, cosh, tanh, asinh, acosh, atanh
 
-    std::cout << "------------------------------------------------------------" << std::endl;
+    std::cout << "--------------------- Functions -----------------------" << std::endl;
 
     //Functions: Are not part of a class
     //Methods: Are part of a class
@@ -499,7 +495,7 @@ int main(int argc, char** argv) {
     AssignAge(agetest);
     std::cout << agetest << std::endl;
 
-    std::cout << "------------------------------------------------------------" << std::endl;
+    std::cout << "------------------- std::vectors (Dynamic Arrays) -------------------" << std::endl;
 
     //Vectors
     //Dynamic Arrays (used when you don't know how many items you're going to store)
@@ -511,7 +507,7 @@ int main(int argc, char** argv) {
 
     std::cout << "Vector Size: " << numVector.size() << std::endl;
 
-    std::cout << "------------------------------------------------------------" << std::endl;
+    std::cout << "-------------------- Exception Handling ---------------------" << std::endl;
     //Exception Handling
     int dividend = 10, divisor = 0;
     try {
@@ -525,7 +521,7 @@ int main(int argc, char** argv) {
         std::cout << "Error: " << e << std::endl;
     }
 
-    std::cout << "------------------------------------------------------------" << std::endl;
+    std::cout << "------------------- Raw Arrays (CArrays) ----------------------" << std::endl;
 
     //Raw Arrays: A collection of multiple variables (usually of the same type) under one single name
 
@@ -588,7 +584,7 @@ int main(int argc, char** argv) {
         j = 333;
     }
 
-    std::cout << "------------------------------------------------------------" << std::endl;
+    std::cout << "----------------- CStrings and std::strings -----------------" << std::endl;
 
     //Strings (an array of characters)
 
@@ -666,7 +662,7 @@ ignores
 escapeeeee
 characters)";
 
-    std::cout << "------------------------------------------------------------" << std::endl;
+    std::cout << "------------------------- CONST ------------------------------" << std::endl;
 
     //CONSTANTS
 
@@ -694,7 +690,7 @@ characters)";
         std::cout << x << std::endl;
     };
 
-    std::cout << "------------------------------------------------------------" << std::endl;
+    std::cout << "------------- OOP Objects Classes Fields and methods ----------" << std::endl;
 
     //Objects, Classes, Fields and Methods
     //Variables made of class types are called objects (instances of a class)
@@ -773,7 +769,7 @@ characters)";
     std::cout << "height field offset in ShapeStruct: " << offsetof(ShapeStruct, height) << std::endl;
 
 
-    std::cout << "------------------------------------------------------------" << std::endl;
+    std::cout << "-------------------------- STATIC --------------------------" << std::endl;
     //The meaning of static:
     // - outside of a class -
     //variable/method only linked internally in this translation unit
@@ -800,7 +796,7 @@ characters)";
     sFunction();
     sFunction();
 
-    std::cout << "------------------------------------------------------------" << std::endl;
+    std::cout << "----------------------- Structs ----------------------" << std::endl;
 
     //Structs
     //members are Public by default
@@ -810,7 +806,7 @@ characters)";
     CircleStruct circleStruct(10);
     std::cout << "Square Area: " << circleStruct.area() << std::endl;
 
-    std::cout << "------------------------------------------------------------" << std::endl;
+    std::cout << "---------------------- Enums -----------------------" << std::endl;
 
     //Enums
     // the : is used to specify what data type the enum actually is (it has to be a non floating-point number)
@@ -824,7 +820,7 @@ characters)";
 
     Example value = Gamma;
 
-    std::cout << "------------------------------------------------------------" << std::endl;
+    std::cout << "---------------- Operator Overloading -----------------" << std::endl;
 
     //Operator overloading (define or change the behaviour of an operator)
     //Operators: Symbols that allow developers to apply something they usually replace functions
@@ -835,8 +831,6 @@ characters)";
     Box box2(5, 5, 5, "5Box");
     std::cout << "Box1 + Box2 = " << (stackBox + box2) << std::endl;
     std::cout << "Box1 == Box2 = " << (stackBox == box2) << std::endl;
-
-    std::cout << "------------------------------------------------------------" << std::endl;
 
     //When There's no errors the main function should return 0
     //The main function returns 0 implicitly if you don't return anything
