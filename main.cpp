@@ -296,10 +296,11 @@ int main(int argc, char** argv) {
         i++;
     }
 
-    std::cout << "----------------- CArrays and std::arrays ----------------" << std::endl;
+    std::cout << "------------------------- CArrays ------------------------------" << std::endl;
 
     //It's bad practice to use range-based for loops over CArrays (AFFECTS PERFORMANCE)
     int arr3[] = {1, 2, 3};
+    //CArrays are of a fixed size - you can't change how much space is allocated
 
     std::array<int, 3> arr4{1, 2, 3};
     //range-based for loop to iterate over an array
@@ -499,6 +500,7 @@ int main(int argc, char** argv) {
 
     //Vectors
     //Dynamic Arrays (used when you don't know how many items you're going to store)
+    //You can also use primitive types as parameters
     std::vector<int> numVector(2);
     numVector[0] = 1;
     numVector[1] = 2;
@@ -506,6 +508,30 @@ int main(int argc, char** argv) {
     numVector.push_back(3);
 
     std::cout << "Vector Size: " << numVector.size() << std::endl;
+
+    //Storing objects themselves in general "should" be more optimized (they're all in line in memory (optimal to read and loop over them))
+    //While if you have an array you need to modify many times it should be more optimal to store pointers
+    std::vector<Box> boxes; // = std::vector<Box>(3); this will already construct 3 vertex objects
+    //This usually does 6 Box copies to add all three boxes
+    //(consctructs the Box here and then copies it to the right memory location)
+    //boxes.push_back(Box(1));
+    //boxes.push_back(Box(2));
+    //boxes.push_back(Box(3));
+
+    boxes.reserve(3); //reserve reserves memory space for a number of objects (so that you don't need to expand the vector to add each item)
+    //emplace_back instead of push_back consctructs the object directly where it needs to be stored and we only need to pass the parameters
+    boxes.emplace_back(1);
+    boxes.emplace_back(2);
+    boxes.emplace_back(3);
+
+    //Range-based loop over dynamic arrays
+    for (Box& boxe : boxes)
+        std::cout << boxe;
+
+    //Delete an element starting from an iterator position (?) [beginning of the array + 1]
+    boxes.erase(boxes.begin() + 1);
+    //Clears the vector
+    boxes.clear();
 
     std::cout << "-------------------- Exception Handling ---------------------" << std::endl;
     //Exception Handling
@@ -766,7 +792,10 @@ characters)";
     //Casting the null pointer to a Box pointer and getting the depth field trhough the arrow operator and then take the address of it and cast it to an int
     //int depthFieldOffset = (int) &((Box*)nullptr)->depth;
     //this operation is more easily done by using the offsetof macro
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
     std::cout << "height field offset in ShapeStruct: " << offsetof(ShapeStruct, height) << std::endl;
+#pragma clang diagnostic pop
 
 
     std::cout << "-------------------------- STATIC --------------------------" << std::endl;

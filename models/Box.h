@@ -23,6 +23,11 @@ public:
         boxName = "Unknown";
     }
 
+    //Copy Constructor
+    Box(const Box& other) : height(other.height), width(other.width), depth(other.depth), boxName(other.boxName) {
+        std::cout << "Box Copy!" << std::endl;
+    }
+
     //Member initializer Lists
     //Should always be in the same order as their declaration
     //This also optimizes code in case of non primitive variable initialization because otherwise objects are initialized twice
