@@ -24,6 +24,8 @@
 #include <memory>       // Smart Pointers
 #include <cstring>
 
+#include <cstddef>      // Contains the offsetof() macro
+
 //Creates an alias for something
 #define INTEGER int
 
@@ -123,12 +125,24 @@ public:
     }
 };
 
+template <typename T, int N>
+class StackArray
+{
+private:
+    T array[N];
+public:
+    int getSize() const {
+        return N;
+    }
+};
+
 //function declaration (only the signature)
 //This declaration is wired up to the real definition by the linker
 int Multiply(int a, int b);
 void Increment(int* value);
 void Increment(int& value);
 void sFunction();
+template<typename T> void templatePrint(T value);
 
 //Define the static variable (avoid linker errors)
 int Player::count;
@@ -860,6 +874,20 @@ characters)";
     Box box2(5, 5, 5, "5Box");
     std::cout << "Box1 + Box2 = " << (stackBox + box2) << std::endl;
     std::cout << "Box1 == Box2 = " << (stackBox == box2) << std::endl;
+
+    std::cout << "--------------------- Templates ----------------------" << std::endl;
+
+    //WAY MORE powerful than generics in managed languages
+    //The compiler writing code for you based on the rules you give it
+
+    //The inferred type is probably const char* but you could also specify std::string explicitly
+    templatePrint("Ciao");
+    templatePrint<std::string>("Test");
+
+    //Angular brackets can be excluded when the type can be inferred either by the parameters or by the return type
+    //Template functions don't really exist, they only exist when they're called
+    StackArray<std::string, 5> array;
+    templatePrint(array.getSize());
 
     //When There's no errors the main function should return 0
     //The main function returns 0 implicitly if you don't return anything

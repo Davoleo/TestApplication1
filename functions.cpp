@@ -10,7 +10,7 @@
 const int functionsID = 143;
 
 void Log(const char* message) {
-std::cout << message << std::endl;
+    std::cout << message << std::endl;
 }
 
 //Function definition  (we declared the signature and defined the body)
@@ -79,4 +79,9 @@ void printString(const std::string& string) {
 
 void printString(const String& string) {
     std::cout << string << std::endl;
+}
+
+//This isn't a real function
+template<typename T> void templatePrint(T value) {
+    std::cout << value << std::endl;
 }
