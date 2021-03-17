@@ -773,8 +773,11 @@ characters)";
         boxPointer = secondBox;
         std::cout << secondBox->getBoxName() << std::endl;
 
+        //the new keyword will call the C function malloc() which calls the specific OS function to allocate memory on the heap
+        //malloc is a pretty expensice function because there is a lot that needs to be done before you get your free space on the heap
+        //It's the actual allocation that is the most expensive in heap stored variables, the access is basically the same
         int* heapArray = new int[5];
-        delete [] heapArray;
+        delete[] heapArray;
 
         //Allocating on the heap although automating the destruction of the object once the execution goes out of scope
         ScopedPointer heapBox = new Box("AutomatedHeapBox");
