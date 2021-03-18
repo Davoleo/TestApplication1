@@ -25,6 +25,10 @@ set(CMAKE_CXX_STANDARD 14)
 # you can also use target_link_directories (probably?)
 # target_link_directories()
 
+# This instruction is used to add preprocessore definition
+# CMake adds NDEBUG flag by default which is active when the program is not in debug mode
+add_compile_definitions(TESTAPP_DEBUG)
+
 add_executable(
         "${PROJECT_NAME}"
 

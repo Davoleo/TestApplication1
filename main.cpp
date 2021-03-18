@@ -40,6 +40,22 @@
 //Available in all functions
 INTEGER globalVar = 0;
 
+//Pre-Processor Macros replace text in the source code with something else
+//templates are evaluated later during the actual compilation
+#define WAIT std::cin.get()
+
+//If NOT debug is NOT defined (which means the process is ran in debug mode then the logging code will be present)
+#ifndef NDEBUG
+#define PRINT(X) std::cout << X << std::endl
+#else
+#define PRINT(X)
+#endif
+
+//Multi-line Macro example
+#define EXPLODE void explode() {\
+    PRINT("You're about to initiate self-destruct sequence"); \
+}
+
 class Player {
 
 private:
@@ -891,6 +907,17 @@ characters)";
     //Template functions don't really exist, they only exist when they're called
     StackArray<std::string, 5> array;
     templatePrint(array.getSize());
+
+    //During the preprocessing stage the macro is replaced
+    WAIT;
+    PRINT("Hello");
+
+    //you can use macros to completely disable certain snippets of code
+#if 0
+    for (int j = 0; j < 30; ++j) {
+        PRINT("spam");
+    }
+#endif
 
     //When There's no errors the main function should return 0
     //The main function returns 0 implicitly if you don't return anything
