@@ -241,8 +241,22 @@ int main(int argc, char** argv) {
 
     //Type Inference
     //Automatically becomes a char* variable (needs to be converted to a string before using it like one)
+    //this variable is automatically inferred to an int (as numeric literals are ints by default)
+    //- It can be useful as if the right part of the expression changes you can keep the left part of the assignment the same and it would work anyways
+    //- Although it could lead to break some stuff
+    //- It's also less clear what's the actual type of the variable.
     auto inferredVar = 1231;
     std::string emptyString = "123";
+
+    std::vector<std::string> fruits;
+    fruits.emplace_back("apple");
+    fruits.emplace_back("orange");
+
+    //Iterating with an iterator
+    //instead of writing std::vector<std::string>::iterator which is a really long type you can use auto
+    for (auto iterator = fruits.begin(); iterator != fruits.end(); iterator++) {
+        std::cout << *iterator << std::endl;
+    }
 
     //stoi() converts a String to an Integer
     int n = stoi(emptyString);
