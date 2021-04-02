@@ -91,7 +91,7 @@ template<typename T> void templatePrint(T value) {
 void hello_world(int a) {
     std::cout << "Hello World! Value: " << a << std::endl;
 }
-
+//Used in "function pointers"
 void for_each(const std::vector<int>& vals, void(*func)(int)) {
     for (int value : vals) {
         func(value);
