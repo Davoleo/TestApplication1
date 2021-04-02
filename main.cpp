@@ -13,8 +13,8 @@
 #include <cstdlib>      // Bunch of standard utilities
 #include <iostream>     // Basic I/O - For example cout cin that output to the console
 #include <limits>       // Mininum - Maximum and limits
-#include <vector>       // Vectors
-#include <array>        // C++ arrays
+#include <vector>       // Vectors (dynamic arrays)
+#include <array>        // C++ static arrays
 #include <string>       // Strings
 #include <fstream>      // File I/O and String streams
 #include <numeric>      // Work with Sequences of values
@@ -540,7 +540,18 @@ int main(int argc, char** argv) {
     AssignAge(agetest);
     std::cout << agetest << std::endl;
 
-    std::cout << "------------------- std::vectors (Dynamic Arrays) -------------------" << std::endl;
+    std::cout << "------------------- std::array (Static Arrays) -------------------" << std::endl;
+
+    //std::arrays are stored on the stack
+    //Declare a simple integer array with a capacity of 5
+    //The main  advandage of this class is that it keeps track of the length of the array automatically
+    std::array<int, 5> intstarray;
+    intstarray[0] = 2;
+    intstarray[2] = 5;
+
+    //In debug mode it does bounds checking
+
+    std::cout << "------------------- std::vector (Dynamic Arrays) -------------------" << std::endl;
 
     //Vectors
     //Dynamic Arrays (used when you don't know how many items you're going to store)
