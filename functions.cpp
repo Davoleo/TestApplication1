@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <vector>
 #include "models/shapes/Shape.h"
 #include "models/shapes/Printable.h"
 #include "models/String.h"
@@ -84,4 +85,15 @@ void printString(const String& string) {
 //This isn't a real function
 template<typename T> void templatePrint(T value) {
     std::cout << value << std::endl;
+}
+
+//Used in "function pointers"
+void hello_world(int a) {
+    std::cout << "Hello World! Value: " << a << std::endl;
+}
+
+void for_each(const std::vector<int>& vals, void(*func)(int)) {
+    for (int value : vals) {
+        func(value);
+    }
 }

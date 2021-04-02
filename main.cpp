@@ -423,6 +423,25 @@ int main(int argc, char** argv) {
         std::cout << "Value " << k+1 << ": " << intArr[k] << std::endl;
     }
 
+    //--- Function pointers ---
+    void hello_world(int);
+    //Get the address of where the code of the function is stored
+    //You don't need the & operator because the conversion happens implicitly
+    typedef void(*IntConsumer)(int);
+    auto func = hello_world; //the type declaration is actually: void(*)();
+    IntConsumer tFunc = hello_world;
+    func(8);
+    tFunc(2);
+
+    std::vector<int> vals = { 1, 2, 3, 4, 5, 6};
+    void for_each(std::vector<int>, IntConsumer);
+    for_each(vals, hello_world);
+
+    //You can also do this with lambda function (anonymous functions)
+    for_each(vals, [](int value) {
+        std::cout << "Lambda Printer: " << value << std::endl;
+    });
+
     std::cout << "------------------------ REFERENCES ------------------------" << std::endl;
 
     //REFERENCES
