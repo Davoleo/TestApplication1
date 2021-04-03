@@ -23,6 +23,8 @@
 #include <sstream>      // String Streams
 #include <memory>       // Smart Pointers
 #include <cstring>
+#include <functional>
+#include <algorithm>
 
 #include <cstddef>      // Contains the offsetof() macro
 
@@ -428,7 +430,7 @@ int main(int argc, char** argv) {
         std::cout << "Value " << k+1 << ": " << intArr[k] << std::endl;
     }
 
-    //--- Function pointers ---
+    std::cout << "-------------- Function Pointers ---------------" << std::endl;
     //Get the address of where the code of the function is stored
     //You don't need the & operator because the conversion happens implicitly
     auto func = hello_world; //the type declaration is actually: void(*)();
@@ -440,9 +442,28 @@ int main(int argc, char** argv) {
     for_each(vals, hello_world);
 
     //You can also do this with lambda function (anonymous functions)
+    int extInt = 5;
+    //The capture square brackets allow us to specify how external variables should be captured into the lambda to be used
+    //Passing a by copy (to allow edit inside the lambda you need to make it "mutable")
+    auto lambda = [extInt](int value) mutable {
+        extInt *= 2;
+        std::cout << "Lambda Printer: " << value << std::endl;
+        std::cout << extInt;
+    };
+    //Whenever you use a function pointer to pass functions you can pass lambdas sorta like function literals
+    //We're deferring from the actual call of the function since, we only pass the function that needs to be executed, that will be called by something else in the future
     for_each(vals, [](int value) {
         std::cout << "Lambda Printer: " << value << std::endl;
     });
+
+    //A cool way to specify function pointers instead of raw pointers is the function class in the functional header
+    std::function<bool(int)> intPredicate = [](int param){
+        return param > 4;
+    };
+
+    std::vector<int> iValues = {1, 2, 3, 4, 5, 6};
+    auto it = std::find_if(iValues.begin(), iValues.end(), intPredicate);
+    std::cout << "first value that is greater than 4: " << *it << std::endl;
 
     std::cout << "------------------------ REFERENCES ------------------------" << std::endl;
 
