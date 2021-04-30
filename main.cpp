@@ -22,9 +22,9 @@
 #include <cmath>        // Common Math Functions
 #include <sstream>      // String Streams
 #include <memory>       // Smart Pointers
-#include <cstring>
-#include <functional>
-#include <algorithm>
+#include <cstring>      // Contains Functions (coming from C's string.h) to manipulate CStrings
+#include <functional>   // Contains a class to work smoothly with Function pointers and lambdas
+#include <algorithm>    // Contains STL Functions for all kinds of collections and common operations
 
 #include <cstddef>      // Contains the offsetof() macro
 
@@ -183,6 +183,16 @@ std::ostream& operator << (std::ostream& stream, const String& string)
     //Can Access buffer private variable because this operator is a friend of the class
     stream << string.buffer;
     return stream;
+}
+
+///NAMESPACES
+///They exist to avoid name conflicts (for functions, variables, classes and everything)
+///To call this function from out of this namespace you need to use the scope access operator '::'
+///@code e.g.: test::print("helo")
+namespace test {
+    void print(const std::string& string) {
+        std::cout << string << std::endl;
+    }
 }
 
 //First function executed at runtime line-by-line
@@ -975,6 +985,8 @@ characters)";
     StackArray<std::string, 5> array;
     templatePrint(array.getSize());
 
+    std::cout << "--------------------- Macros ----------------------" << std::endl;
+
     //During the preprocessing stage the macro is replaced
     WAIT;
     PRINT("Hello");
@@ -985,6 +997,20 @@ characters)";
         PRINT("spam");
     }
 #endif
+
+    std::cout << "--------------------- Namespaces ----------------------" << std::endl;
+    //Is a generic statement to say that from this point on we're always using the test namespace
+    //using namespace test;
+
+    test::print("helo");
+
+    //A way to just import the function so that it can be used without the scope operator
+    using test::print;
+    print("Test");
+
+    //you can create an alias for a namespace (especially useful when namespaces are long)
+    namespace t = test;
+    t::print("dasadsasdsad");
 
     //When There's no errors the main function should return 0
     //The main function returns 0 implicitly if you don't return anything
