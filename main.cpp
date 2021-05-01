@@ -25,6 +25,7 @@
 #include <cstring>      // Contains Functions (coming from C's string.h) to manipulate CStrings
 #include <functional>   // Contains a class to work smoothly with Function pointers and lambdas
 #include <algorithm>    // Contains STL Functions for all kinds of collections and common operations
+#include <thread>       // Multithreading support
 
 #include <cstddef>      // Contains the offsetof() macro
 
@@ -169,6 +170,8 @@ void for_each(const std::vector<int>&, IntConsumer);
 
 //Define the static variable (avoid linker errors)
 int Player::count;
+
+static bool s_finished = false;
 
 //Overriding the << operator in std
 //It's sorta like overriding toString() in Java
@@ -1011,6 +1014,28 @@ characters)";
     //you can create an alias for a namespace (especially useful when namespaces are long)
     namespace t = test;
     t::print("dasadsasdsad");
+
+    std::cout << "--------------------- Threads ----------------------" << std::endl;
+
+    //Allow usage of s to specify time unit
+    using namespace std::literals::chrono_literals;
+
+    std::thread worker([]() {
+        while (!s_finished) {
+            std::cout << "Working...";
+            std::this_thread::sleep_for(1s);
+        }
+    });
+
+    std::cin.get();
+    s_finished = true;
+
+    //Wait on this current thready for the worker thread to finish
+    worker.join();
+    std::cout << "The worker Thread has finished working." << std::endl;
+
+    //this will not run until the worker thread has finished working
+    std::cin.get();
 
     //When There's no errors the main function should return 0
     //The main function returns 0 implicitly if you don't return anything
