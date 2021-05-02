@@ -11,8 +11,12 @@
 
 //By Default everything inside a struct will be public unless otherwise specified
 struct ShapeStruct {
-    double width, height;
+    double width;
+    double height;
 
+    int id;
+
+public:
     ShapeStruct(double width = 1, double height = 1) {
         this->width = width;
         this->height = height;
@@ -21,9 +25,6 @@ struct ShapeStruct {
     double area() {
         return width * height;
     }
-
-private:
-    int id;
 };
 
 struct CircleStruct : ShapeStruct {

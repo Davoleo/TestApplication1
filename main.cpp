@@ -26,6 +26,7 @@
 #include <functional>   // Contains a class to work smoothly with Function pointers and lambdas
 #include <algorithm>    // Contains STL Functions for all kinds of collections and common operations
 #include <thread>       // Multithreading support
+#include <chrono>       // Timing functions support
 
 #include <cstddef>      // Contains the offsetof() macro
 
@@ -161,7 +162,12 @@ int Multiply(int a, int b);
 void Increment(int* value);
 void Increment(int& value);
 void sFunction();
-template<typename T> void templatePrint(T value);
+void hello_spam();
+
+template<typename T>
+void templatePrint(T value) {
+    std::cout << value << std::endl;
+}
 
 //Used In "function pointers"
 void hello_world(int);
@@ -905,11 +911,7 @@ characters)";
     //Casting the null pointer to a Box pointer and getting the depth field trhough the arrow operator and then take the address of it and cast it to an int
     //int depthFieldOffset = (int) &((Box*)nullptr)->depth;
     //this operation is more easily done by using the offsetof macro
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Winvalid-offsetof"
     std::cout << "height field offset in ShapeStruct: " << offsetof(ShapeStruct, height) << std::endl;
-#pragma clang diagnostic pop
-
 
     std::cout << "-------------------------- STATIC --------------------------" << std::endl;
     //The meaning of static:
@@ -980,6 +982,7 @@ characters)";
     //The compiler writing code for you based on the rules you give it
 
     //The inferred type is probably const char* but you could also specify std::string explicitly
+    //Won't work directly with const char* because the template type is not a pointer but an actual value
     templatePrint("Ciao");
     templatePrint<std::string>("Test");
 
@@ -1036,6 +1039,24 @@ characters)";
 
     //this will not run until the worker thread has finished working
     std::cin.get();
+
+    std::cout << "--------------------- Chrono ----------------------" << std::endl;
+
+    //Returns a time point of the current instant
+    auto start = std::chrono::high_resolution_clock::now();
+
+    //Sleep the current thread for 1 second to test chrono
+    std::this_thread::sleep_for(1s);
+
+    auto end = std::chrono::high_resolution_clock::now();
+
+    std::chrono::duration<float> duration = end - start;
+    std::cout << "Time Passed: " << duration.count() << 's' << std::endl;
+
+    //This function is automatically timed and prints how it takes to execute
+    hello_spam();
+
+    std::cout << "--------------------- ENDO ----------------------" << std::endl;
 
     //When There's no errors the main function should return 0
     //The main function returns 0 implicitly if you don't return anything

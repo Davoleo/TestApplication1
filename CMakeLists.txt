@@ -44,7 +44,7 @@ add_executable(
         "Logger.h"
         "models/shapes/Printable.h"
         "models/String.h"
-)
+        timer.h)
 
 # This will tell CMake to go into the sub_project directory and to execute the CMakeLists.txt file there
 # add_subdirectory("sub_project")

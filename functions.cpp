@@ -5,8 +5,8 @@
 #include <iostream>
 #include <vector>
 #include "models/shapes/Shape.h"
-#include "models/shapes/Printable.h"
 #include "models/String.h"
+#include "timer.h"
 
 const int functionsID = 143;
 
@@ -82,11 +82,6 @@ void printString(const String& string) {
     std::cout << string << std::endl;
 }
 
-//This isn't a real function
-template<typename T> void templatePrint(T value) {
-    std::cout << value << std::endl;
-}
-
 //Used in "function pointers"
 void hello_world(int a) {
     std::cout << "Hello World! Value: " << a << std::endl;
@@ -96,4 +91,16 @@ void for_each(const std::vector<int>& vals, void(*func)(int)) {
     for (int value : vals) {
         func(value);
     }
+}
+
+/// Spams "Hello! " to the console 100 times
+/// this function is timed via @struct Timer
+void hello_spam() {
+    Timer timer;
+
+    for (int i = 0; i < 100; ++i) {
+        std::cout << "Hello! ";
+    }
+
+    std::cout << std::endl;
 }
