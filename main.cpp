@@ -712,6 +712,43 @@ int main(int argc, char** argv) {
     char sampleName[2][5] = {{'M', 'a', 'r', 'i', 'o'},
                              {'R', 'o', 's', 's', 'i'}};
 
+    //heap allocated multi-dim array
+    //Allocate 50 int pointers
+    int** multiHeap = new int*[5];
+
+    //Allocate 50 arrays
+    for (int j = 0; j < 5; j++) {
+        multiHeap[j] = new int[5];
+    }
+
+    for (int x = 0; x < 5; ++x) {
+        for (int y = 0; y < 5; ++y) {
+            multiHeap[x][y] = 2;
+        }
+    }
+
+    //Allocating the arrays using a loop and heap allocation doesn't guarantee that the arrays will be allocated close together
+    //which is not good because it might cause cache misses when looping over the multidim array
+    //to improve that you can actually use 1D arrays to store the whole matrix
+    int* flattenedMatrix = new int[5 * 5];
+
+//    for (int j = 0; j < 5 * 5; ++j) {
+//        flattenedMatrix[j] = 2;
+//    }
+    for (int x = 0; x < 5; ++x) {
+        for (int y = 0; y < 5; ++y) {
+            flattenedMatrix[y + x * 5] = 5;
+        }
+    }
+
+    //To delete 2D arrays we need to loop over each pointer and delete inner arrays manually
+    for (int j = 0; j < 5; j++) {
+        delete[] multiHeap[j];
+    }
+    //And then delete the heap allocated pointers array (array of arrays)
+    delete[] multiHeap;
+    delete[] flattenedMatrix;
+
     //Print out the second item in the second part of the multidimensional array
     std::cout << "2nd letter in 2nd array: " << sampleName[1][1] << std::endl;
 
