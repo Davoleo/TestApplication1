@@ -649,6 +649,23 @@ int main(int argc, char** argv) {
     //Clears the vector
     boxes.clear();
 
+    //Sorting
+    std::vector<int> values = { 3, 5, 2, 1, 4 };
+
+    //std::sort is in header <algorithms>
+    //Sorts in ascending order using "operator<"
+    std::sort(values.begin(), values.end());
+    //Based on the greater value std::greater is in header <functional>
+    std::sort(values.begin(), values.end(), std::greater<>());
+    //Based on a custom lambda anonymous function | Returns true if the first value is higher than the second
+    std::sort(values.begin(), values.end(), [](int a, int b) {
+        if (a == 1)
+            return false;
+        if (b == 2)
+            return true;
+        return a < b;
+    });
+
     std::cout << "-------------------- Exception Handling ---------------------" << std::endl;
     //Exception Handling
     int dividend = 10, divisor = 0;
@@ -758,7 +775,6 @@ int main(int argc, char** argv) {
 
     //Using C++11 standard arrays
     std::array<int, 5> standardArray{};
-
     for (int& j : standardArray) {
         j = 333;
     }
