@@ -1109,6 +1109,27 @@ characters)";
     //This function is automatically timed and prints how it takes to execute
     hello_spam();
 
+    std::cout << "--------------------- Type Punning ----------------------" << std::endl;
+
+    //C++ has a type system and usually this system is strong but there are ways to get around it and
+    //Manage memory directly (unlike Java)
+    //It's useful in some cases to have raw bytes low level access but in other cases the type system is there and useful for a reason
+    int sampleInt = 50;
+    //Converts implicitly to a double
+    double sampleIntConverted = sampleInt;
+    //The int 50 is reinterpreted as a double |
+    // could cause crash because of size mismatch (and we've read 8 bytes of memory when we had 4 becuase of different type size)
+    // you can also use a variable alias (&) in case you don't want to create a new variable with that data
+    double sampleIntReinterpreted = *(double*)&sampleInt;
+
+    //Since structs and array are both consecutive areas of memory we can access one as each other
+    struct {
+        int x; int y;
+    } entity = {5, 8};
+
+    int* position = (int*)&entity;
+    std::cout << position[0] << ", " << position[1] << std::endl;
+
     std::cout << "--------------------- ENDO ----------------------" << std::endl;
 
     //When There's no errors the main function should return 0
