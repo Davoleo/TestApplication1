@@ -1003,6 +1003,26 @@ characters)";
     CircleStruct circleStruct(10);
     std::cout << "Square Area: " << circleStruct.area() << std::endl;
 
+    std::cout << "----------------------- Unions ----------------------" << std::endl;
+
+    //Just like structs but only occupy the size of one member instead of the size of all members
+    //in memory
+    //Related to Type Punning (see the section below)
+    struct Union {
+        union {
+            float uFloat;
+            int uInt;
+        };
+    };
+
+    Union un;
+    un.uFloat = 2.0F;
+    //Should print the value 2 in float and the representation of 2 as an int in memory
+    std::cout << un.uFloat << " | " << un.uInt << std::endl;
+
+    //You could specify multiple anonymous struct inside of a union inside of a named struct
+    //to specify different ways data in the named struct can be accessed
+
     std::cout << "---------------------- Enums -----------------------" << std::endl;
 
     //Enums
