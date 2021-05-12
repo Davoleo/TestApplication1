@@ -15,8 +15,12 @@ public:
     //static field: shared between different objects, property of the class
     static int count;
 
-    //Deconstructor - Called anytime the object is deleted or not used anymore
-    ~Shape() = default;
+    //Destructor - Called anytime the object is deleted or not used anymore
+    //Virtual Destructors
+    //Destructors should be marked as virtual if the class is going to be extended, because
+    //In case of a polymorphic object creation (e.g. Shape* shape = new Rectangle(); delete shape;)
+    //The destructor of the derived class Rectangle is not called automatically and could create memory leaks if Rectangle did some heap allocation
+    virtual ~Shape() = default;
 
     //Implementing in Shape.cpp doesn't work :(
     static int getCount() {
