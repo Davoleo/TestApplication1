@@ -297,7 +297,33 @@ int main(int argc, char** argv) {
     std::cout << "----------------------- Casting ---------------------------" << std::endl;
 
     std::cout << "4 / 5 = " << 4 / 5 << std::endl;
+    //Explicit convertion (Cast)
     std::cout << "4 / 5 = " << (float) 4 / 5 << std::endl;
+
+    //C-Style Cast
+    int castInt = 5;
+    //Implicit conversion (no data loss)
+    double castDouble = castInt;
+    int castOtherInt = (int)(castDouble + 5.3);
+
+    //C++ style casts (don't do anything more than C-Style casts, mainly syntactic sugar for different types of casting context)
+    //Adds compile time and sometimes runtime checks to see if the conversion is valid
+    //Static cast is the normal type of cast between variable types
+    double castOtherDouble = static_cast<int>(castDouble) + 5.3;
+    //Reinterpret cast is a cast in pointers and allows Type Punning (See section below) while still having compile time checks
+    int reinterpretedInt = *reinterpret_cast<int*>(&castOtherDouble);
+    //Dynamic cast checks if the object is instance of that class before performing the cast so, for example:
+    Shape* shape1 = new Rectangle(5, 3);
+    //if the dynamic cast fails it'll return a NULL pointer
+    Circle* circle1 = dynamic_cast<Circle*>(shape1);
+    //Const cast is used to add or remove const from variable types
+    int constCastInt = 3;
+    const int& constCastIntRef = constCastInt;
+    //constCastIntRef = 4; Compile-Time Error
+    const_cast<int&>(constCastIntRef) = 4; //OK, because the first instance was actually a variable and not const
+    const int alreadyConst = 5;
+    int* alreadyConstAddress = const_cast<int*>(&alreadyConst);
+    //*alreadyConstAddress = 6; //Undefined Behaviour
 
     std::cout << "------------------------ If Statement----------------------" << std::endl;
 
