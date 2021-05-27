@@ -46,6 +46,10 @@ add_executable(
         "models/String.h"
         timer.h)
 
+#In GCC you can use precompiled header just by compiling the header alone before compiling the actual executable
+# Allows to use precompiled headers for the specified target
+# target_precompile_headers("${PROJECT_NAME}" example.h)
+
 # This will tell CMake to go into the sub_project directory and to execute the CMakeLists.txt file there
 # add_subdirectory("sub_project")
 
