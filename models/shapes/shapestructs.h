@@ -2,7 +2,9 @@
 // Created by Davoleo on 23/06/2020.
 //
 
-#include <cmath>
+//VS Compiler only works with math.h and _USE_MATH_DEFINES instead of cmath
+#define _USE_MATH_DEFINES
+#include <math.h>
 
 #ifndef TESTAPPLICATION1_SHAPESTRUCTS_H
 #define TESTAPPLICATION1_SHAPESTRUCTS_H

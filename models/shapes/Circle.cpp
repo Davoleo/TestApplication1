@@ -3,7 +3,10 @@
 //
 
 #include "Circle.h"
-#include <cmath>
+
+//VS Compiler only works with math.h and _USE_MATH_DEFINES instead of cmath
+#define _USE_MATH_DEFINES
+#include <math.h>
 
 Circle::Circle(double radius) : Shape() {
     this->radius = radius;

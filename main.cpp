@@ -183,7 +183,7 @@ static bool s_finished = false;
 //It's sorta like overriding toString() in Java
 std::ostream& operator << (std::ostream& stream, const Box& box)
 {
-    stream << "Box Name: " << box.getBoxName() << "\tBox Size: (" << box.getWidth() << ", " << box.getHeight() << ", " << box.getDepth() << ")";
+    stream << "Box Name: " << box.getBoxName() << "\tBox Size: (" << box.getWidth() << ", " << box.getHeight() << ", " << box.getDepth() << ')' << std::endl;
     return stream;
 }
 
@@ -470,7 +470,7 @@ int main(int argc, char** argv) {
     pIntArray++;
     std::cout << "2nd address: " << pIntArray << std::endl;
 
-    DoubleArray(pIntArray, 4);
+    DoubleArray(intArr, 4);
     for (int k = 0; k < 4; ++k) {
         std::cout << "Value " << k+1 << ": " << intArr[k] << std::endl;
     }
@@ -639,7 +639,7 @@ int main(int argc, char** argv) {
     //In debug mode it does bounds checking
 
     std::cout << "------------------- std::vector (Dynamic Arrays) -------------------" << std::endl;
-
+    
     //Vectors
     //Dynamic Arrays (used when you don't know how many items you're going to store)
     //You can also use primitive types as parameters
@@ -684,13 +684,14 @@ int main(int argc, char** argv) {
     //Based on the greater value std::greater is in header <functional>
     std::sort(values.begin(), values.end(), std::greater<>());
     //Based on a custom lambda anonymous function | Returns true if the first value is higher than the second
-    std::sort(values.begin(), values.end(), [](int a, int b) {
-        if (a == 1)
-            return false;
-        if (b == 2)
-            return true;
-        return a < b;
-    });
+    // TODO: This Lambda fails a VC++ Assertion as invalid comparator
+    //std::sort(values.begin(), values.end(), [](int a, int b) {
+    //    if (a == 1)
+    //        return false;
+    //    if (b == 2)
+    //        return true;
+    //    return a < b;
+    //});
 
     std::cout << "-------------------- Exception Handling ---------------------" << std::endl;
     //Exception Handling
@@ -825,6 +826,7 @@ int main(int argc, char** argv) {
     //Create a CString manually as an array (this is not a string and doesn't have a terminator char)
     //hence when we print this all the rest of the memory address is going to be printed as well
     char charArray[7] = { 'D', 'a', 'v', 'o', 'l', 'e', 'o'};
+    //Print char array will also print all the memory near the string, since there is no terminator char in the array
     std::cout << charArray << std::endl;
 
     std::string string1 = "I'm Example String";

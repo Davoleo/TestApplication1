@@ -10,8 +10,9 @@
 struct Timer {
 
     std::chrono::duration<float> duration;
-    std::chrono::time_point<std::chrono::system_clock> start;
-    std::chrono::time_point<std::chrono::system_clock> end;
+    //Note: MinGW needs system_clock as a type instead of steady_clock
+    std::chrono::time_point<std::chrono::steady_clock> start;
+    std::chrono::time_point<std::chrono::steady_clock> end;
 
     Timer() {
         start = std::chrono::high_resolution_clock::now();
