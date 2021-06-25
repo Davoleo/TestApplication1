@@ -315,6 +315,8 @@ int main(int argc, char** argv) {
     //Dynamic cast checks if the object is instance of that class before performing the cast so, for example:
     Shape* shape1 = new Rectangle(5, 3);
     //if the dynamic cast fails it'll return a NULL pointer
+    //Since C++ is not actually a managed language like C# it uses RTTI which is RunTime Type Information to know 
+    //If an object is actually instance of a certain class, this can create a small time and space overhead and can be disabled in compiler settings
     Circle* circle1 = dynamic_cast<Circle*>(shape1);
     //Const cast is used to add or remove const from variable types
     int constCastInt = 3;
