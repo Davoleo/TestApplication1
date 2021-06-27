@@ -63,5 +63,6 @@
   <ItemGroup>
     <None Include=".gitignore" />
     <None Include="README.md" />
+    <None Include="misc\CMakeListsExample.cmake" />
   </ItemGroup>
 </Project>
