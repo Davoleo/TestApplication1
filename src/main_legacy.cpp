@@ -25,7 +25,7 @@ Codice sorgente/editor > Preprocessore > Compilatore > codice oggetto > linker >
 //#define se if <--- define per la sostituzione
 
 
-int main()
+int run()
 {
     //SEZIONE 1: HUB
 

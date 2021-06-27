@@ -40,6 +40,7 @@
 #include "models/shapes/shapestructs.h"
 #include "Logger.h"
 #include "models/String.h"
+#include "timer.h"
 
 //Available in all functions
 INTEGER globalVar = 0;
@@ -1158,6 +1159,52 @@ characters)";
 
     //This function is automatically timed and prints how it takes to execute
     hello_spam();
+
+    std::cout << "--------------------- Benchmarking ----------------------" << std::endl;
+
+    int cnt = 0;
+    {
+        Timer timer;
+        for (int i = 0; i < 1000000; i++)
+            cnt += 2;
+    }
+
+    std::cout << cnt << std::endl;
+
+    //Tests which smart pointer is slower to be created and which is faster
+    struct Vector2 
+    {
+        float x;
+        float y;
+    };
+
+    std::cout << "Make Shared" << std::endl;
+    {
+        std::array<std::shared_ptr<Vector2>, 1000> sharedPtrs;
+        Timer timer;
+        for (int i = 0; i < sharedPtrs.size(); i++) 
+            sharedPtrs[i] = std::make_shared<Vector2>();
+    }
+
+
+    std::cout << "new Shared" << std::endl;
+    {
+        std::array<std::shared_ptr<Vector2>, 1000> sharedPtrs;
+        Timer timer;
+        for (int i = 0; i < sharedPtrs.size(); i++) 
+            sharedPtrs[i] = std::shared_ptr<Vector2>(new Vector2());
+    }
+
+    std::cout << "Make Unique" << std::endl;
+    {
+        std::array<std::unique_ptr<Vector2>, 1000> uniquePtrs;
+        Timer timer;
+        for (int i = 0; i < uniquePtrs.size(); i++) 
+            uniquePtrs[i] = std::make_unique<Vector2>();
+    }
+
+    __debugbreak();
+
 
     std::cout << "--------------------- Type Punning ----------------------" << std::endl;
 
