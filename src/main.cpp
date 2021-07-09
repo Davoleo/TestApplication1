@@ -15,6 +15,7 @@
 #include <limits>       // Mininum - Maximum and limits
 #include <vector>       // Vectors (dynamic arrays)
 #include <tuple>        // Tuples (structs to hold multiple different data types)
+#include <optional>     // Optional data  (safe way of saying that data could be there or could not)
 #include <array>        // C++ static arrays
 #include <string>       // Strings
 #include <fstream>      // File I/O and String streams
@@ -1040,6 +1041,19 @@ characters)";
     std::tuple<std::string, int> create_person();
     auto[name, age] = create_person();  //Breaks the tuple in two variables and creates them automatically
     //Side note: Structured binding can also work with custom structs
+
+    std::cout << "----------------------- Optional Data ----------------------" << std::endl;
+
+    std::optional<std::string> read_file_as_string(const std::string& filepath);
+    std::optional<std::string> data = read_file_as_string("data.txt");
+
+    if (data.has_value())
+        std::cout << "File read successfully\n";
+    else
+        std::cout << "File could not be opened\n";
+
+    //returns Either the data inside the optional of the fallback specified
+    std::string stringdata = data.value_or("404: File not found");
 
     std::cout << "----------------------- Unions ----------------------" << std::endl;
 

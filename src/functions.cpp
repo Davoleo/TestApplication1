@@ -5,6 +5,8 @@
 #include <iostream>
 #include <vector>
 #include <tuple>
+#include <fstream>
+#include <optional>
 #include "models/shapes/Shape.h"
 #include "models/String.h"
 #include "timer.h"
@@ -108,4 +110,20 @@ void hello_spam() {
 
 std::tuple<std::string, int> create_person() {
     return { "Davoleo", 19 };
+}
+
+std::optional<std::string> read_file_as_string(const std::string& filepath) {
+    
+    std::ifstream stream(filepath);
+
+    if (!stream.fail())
+    {
+        std::string result;
+        //read file
+        stream.close();
+        return std::optional(result);
+    }
+
+    return {};
+
 }
