@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <vector>
+#include <tuple>
 #include "models/shapes/Shape.h"
 #include "models/String.h"
 #include "timer.h"
@@ -103,4 +104,8 @@ void hello_spam() {
     }
 
     std::cout << std::endl;
+}
+
+std::tuple<std::string, int> create_person() {
+    return { "Davoleo", 19 };
 }

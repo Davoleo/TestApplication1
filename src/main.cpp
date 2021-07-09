@@ -14,6 +14,7 @@
 #include <iostream>     // Basic I/O - For example cout cin that output to the console
 #include <limits>       // Mininum - Maximum and limits
 #include <vector>       // Vectors (dynamic arrays)
+#include <tuple>        // Tuples (structs to hold multiple different data types)
 #include <array>        // C++ static arrays
 #include <string>       // Strings
 #include <fstream>      // File I/O and String streams
@@ -1033,6 +1034,12 @@ characters)";
     std::cout << "Square Area: " << shape.area() << std::endl;
     CircleStruct circleStruct(10);
     std::cout << "Square Area: " << circleStruct.area() << std::endl;
+
+    std::cout << "----------------------- Structured Bindings ----------------------" << std::endl;
+
+    std::tuple<std::string, int> create_person();
+    auto[name, age] = create_person();  //Breaks the tuple in two variables and creates them automatically
+    //Side note: Structured binding can also work with custom structs
 
     std::cout << "----------------------- Unions ----------------------" << std::endl;
 
