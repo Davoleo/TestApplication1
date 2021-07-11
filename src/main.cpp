@@ -16,6 +16,7 @@
 #include <vector>       // Vectors (dynamic arrays)
 #include <tuple>        // Tuples (structs to hold multiple different data types)
 #include <optional>     // Optional data  (safe way of saying that data could be there or could not)
+#include <variant>      // Variant data (variable that can contain and handles a variable of one or other data types)
 #include <array>        // C++ static arrays
 #include <string>       // Strings
 #include <fstream>      // File I/O and String streams
@@ -1042,7 +1043,7 @@ characters)";
     auto[name, age] = create_person();  //Breaks the tuple in two variables and creates them automatically
     //Side note: Structured binding can also work with custom structs
 
-    std::cout << "----------------------- Optional Data ----------------------" << std::endl;
+    std::cout << "----------------------- std::Optional Data ----------------------" << std::endl;
 
     std::optional<std::string> read_file_as_string(const std::string& filepath);
     std::optional<std::string> data = read_file_as_string("data.txt");
@@ -1054,6 +1055,24 @@ characters)";
 
     //returns Either the data inside the optional of the fallback specified
     std::string stringdata = data.value_or("404: File not found");
+
+    std::cout << "----------------------- std::Variant Data ----------------------" << std::endl;
+    //Variants aren't just type-safe unions because unions have a total size = to the highest of the size of the types in it
+    //While variants have the sum of the sizes of all types as size (just like structs)
+    //So you can actually be more efficient if you use Unions at the loss of type-checking
+
+    std::variant<std::string, int> variantData;
+    variantData = "Cherno";
+    std::cout << std::get<std::string>(variantData) << std::endl;
+    variantData = 2;
+    if (variantData.index() == 1) {
+        std::cout << std::get<int>(variantData) << std::endl;
+    }
+    
+    std::string* val = std::get_if<std::string>(&variantData);
+    if (val == nullptr) {
+        std::cout << "get_if returned null pointer!" << std::endl;
+    }
 
     std::cout << "----------------------- Unions ----------------------" << std::endl;
 
