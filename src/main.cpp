@@ -17,6 +17,7 @@
 #include <tuple>        // Tuples (structs to hold multiple different data types)
 #include <optional>     // Optional data  (safe way of saying that data could be there or could not)
 #include <variant>      // Variant data (variable that can contain and handles a variable of one or other data types)
+#include <any>          // The Any variable type (store any kind of data in the same variable)
 #include <array>        // C++ static arrays
 #include <string>       // Strings
 #include <fstream>      // File I/O and String streams
@@ -1040,7 +1041,7 @@ characters)";
     std::cout << "----------------------- Structured Bindings ----------------------" << std::endl;
 
     std::tuple<std::string, int> create_person();
-    auto[name, age] = create_person();  //Breaks the tuple in two variables and creates them automatically
+    auto[structPersonName, structPersonAge] = create_person();  //Breaks the tuple in two variables and creates them automatically
     //Side note: Structured binding can also work with custom structs
 
     std::cout << "----------------------- std::Optional Data ----------------------" << std::endl;
@@ -1073,6 +1074,17 @@ characters)";
     if (val == nullptr) {
         std::cout << "get_if returned null pointer!" << std::endl;
     }
+
+    std::cout << "----------------------- std::any data ----------------------" << std::endl;
+
+    //Basically std::variant that is not typesafe and can store any type of data
+    //Works via unions and void pointer in the implementation
+    //Will also dynamically allocate memory if the requested space is above 32bytes
+    std::any anyDataTest;
+    anyDataTest = 2;
+    anyDataTest = "Oh Wow!";
+    anyDataTest = std::string("Test");
+    std::string& anyString = std::any_cast<std::string&>(anyDataTest);
 
     std::cout << "----------------------- Unions ----------------------" << std::endl;
 
