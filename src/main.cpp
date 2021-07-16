@@ -29,7 +29,8 @@
 #include <cstring>      // Contains Functions (coming from C's string.h) to manipulate CStrings
 #include <functional>   // Contains a class to work smoothly with Function pointers and lambdas
 #include <algorithm>    // Contains STL Functions for all kinds of collections and common operations
-#include <thread>       // Multithreading support
+#include <thread>       // Multithreading support (raw threads)
+#include <future>       // std::async and futures support  (asynchrounous tasks)
 #include <chrono>       // Timing functions support
 
 #include <cstddef>      // Contains the offsetof() macro
@@ -1038,13 +1039,13 @@ characters)";
     CircleStruct circleStruct(10);
     std::cout << "Square Area: " << circleStruct.area() << std::endl;
 
-    std::cout << "----------------------- Structured Bindings ----------------------" << std::endl;
+    std::cout << "----------------------- Structured Bindings (C++ 17) ----------------------" << std::endl;
 
     std::tuple<std::string, int> create_person();
     auto[structPersonName, structPersonAge] = create_person();  //Breaks the tuple in two variables and creates them automatically
     //Side note: Structured binding can also work with custom structs
 
-    std::cout << "----------------------- std::Optional Data ----------------------" << std::endl;
+    std::cout << "----------------------- std::Optional Data (C++ 17) ----------------------" << std::endl;
 
     std::optional<std::string> read_file_as_string(const std::string& filepath);
     std::optional<std::string> data = read_file_as_string("data.txt");
@@ -1057,7 +1058,7 @@ characters)";
     //returns Either the data inside the optional of the fallback specified
     std::string stringdata = data.value_or("404: File not found");
 
-    std::cout << "----------------------- std::Variant Data ----------------------" << std::endl;
+    std::cout << "----------------------- std::Variant Data (C++ 17) ----------------------" << std::endl;
     //Variants aren't just type-safe unions because unions have a total size = to the highest of the size of the types in it
     //While variants have the sum of the sizes of all types as size (just like structs)
     //So you can actually be more efficient if you use Unions at the loss of type-checking
@@ -1075,7 +1076,7 @@ characters)";
         std::cout << "get_if returned null pointer!" << std::endl;
     }
 
-    std::cout << "----------------------- std::any data ----------------------" << std::endl;
+    std::cout << "----------------------- std::any data (C++ 17) ----------------------" << std::endl;
 
     //Basically std::variant that is not typesafe and can store any type of data
     //Works via unions and void pointer in the implementation
@@ -1196,6 +1197,13 @@ characters)";
     //this will not run until the worker thread has finished working
     std::cin.get();
 
+    std::cout << "--------------------- std::async & futures ----------------------" << std::endl;
+
+    //You need to store futures or apparently work will run sequentially
+    std::future future1 = std::async(std::launch::async, [](){std::cout << "std::async - First" << std::endl;});
+    std::future future2 = std::async(std::launch::async, [](){std::cout << "std::async - Second" << std::endl;});
+    std::future future3 = std::async(std::launch::async, [](){std::cout << "std::async - Third" << std::endl;});
+
     std::cout << "--------------------- Chrono ----------------------" << std::endl;
 
     //Returns a time point of the current instant
@@ -1255,7 +1263,7 @@ characters)";
             uniquePtrs[i] = std::make_unique<Vector2>();
     }
 
-    __debugbreak();
+    //__debugbreak();
 
 
     std::cout << "--------------------- Type Punning ----------------------" << std::endl;
