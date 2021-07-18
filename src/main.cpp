@@ -1199,7 +1199,7 @@ characters)";
 
     std::cout << "--------------------- std::async & futures ----------------------" << std::endl;
 
-    //You need to store futures or apparently work will run sequentially
+    //You need to store futures or apparently work will run sequentially (because std::future destructor automatically awaits for the async function to terminate)
     std::future future1 = std::async(std::launch::async, [](){std::cout << "std::async - First" << std::endl;});
     std::future future2 = std::async(std::launch::async, [](){std::cout << "std::async - Second" << std::endl;});
     std::future future3 = std::async(std::launch::async, [](){std::cout << "std::async - Third" << std::endl;});
