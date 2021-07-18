@@ -85,6 +85,10 @@ void printString(const String& string) {
     std::cout << string << std::endl;
 }
 
+void print_string_view(const std::string_view stringView) {
+    std::cout << stringView << std::endl;
+}
+
 //Used in "function pointers"
 void hello_world(int a) {
     std::cout << "Hello World! Value: " << a << std::endl;

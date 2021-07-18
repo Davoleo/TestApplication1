@@ -169,6 +169,7 @@ void Increment(int* value);
 void Increment(int& value);
 void sFunction();
 void hello_spam();
+void printString(const std::string& string);
 
 template<typename T>
 void templatePrint(T value) {
@@ -892,6 +893,24 @@ that
 ignores
 escapeeeee
 characters)";
+
+    std::cout << "std::string_view" << std::endl;
+    //Every time you construct a new std::string some memory will be heap allocated
+    //even methods like substr and others that modify -> copy the string and return the new instance will all allocate new heap memory
+    std::string nnname = "Name Surname";
+    printString(nnname);
+
+    //Will heap allocate a new string
+    std::string ffirstNameSubString = nnname.substr(0, 4);
+
+    //Certain times though we can use std::string_view to avoid heap allocating and just getting a pointer into an existing string allocated by someone else
+    //string_view was implemented in [C++ 17] although it's a simple class to write and most people already created classes like this before it's std implementation
+    std::string_view firstNameView(nnname.c_str(), 4);
+    std::string_view lastNameView(nnname.c_str() + 4, 7);
+
+    void print_string_view(const std::string_view stringView);
+    print_string_view(firstNameView);
+    print_string_view(lastNameView);
 
     std::cout << "------------------------- CONST ------------------------------" << std::endl;
 
