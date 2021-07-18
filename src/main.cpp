@@ -38,6 +38,7 @@
 //Creates an alias for something
 #define INTEGER int
 
+//Own project headers
 #include "models/shapes/Shape.h"
 #include "models/Box.h"
 #include "models/shapes/Rectangle.h"
@@ -215,6 +216,22 @@ namespace test {
 //Every cpp file is compiled to a .obj file (by the compiler)
 //All the .obj files are archived together into an .exe file by the linker
 int main(int argc, char** argv) {
+
+    int sectionId;
+
+    std::cout << "Input the section you want to run:" << std::endl;
+    std::cout << "1: main" << std::endl;
+    std::cout << "2: legacy_main" << std::endl;
+    std::cout << "3: worldo_test" << std::endl;
+    std::cin >> sectionId;
+
+    int section_world_test();
+    int section_legacy_code();
+
+    if (sectionId == 2)
+        return section_legacy_code();
+    else if (sectionId == 3)
+        return section_world_test();
 
     Logger logger;
 
@@ -1243,7 +1260,7 @@ characters)";
 
     int cnt = 0;
     {
-        Timer timer;
+        Timer timer("1,000,000 counting loop");
         for (int i = 0; i < 1000000; i++)
             cnt += 2;
     }
@@ -1260,7 +1277,7 @@ characters)";
     std::cout << "Make Shared" << std::endl;
     {
         std::array<std::shared_ptr<Vector2>, 1000> sharedPtrs;
-        Timer timer;
+        Timer timer("make_shared_pointer");
         for (int i = 0; i < sharedPtrs.size(); i++) 
             sharedPtrs[i] = std::make_shared<Vector2>();
     }
@@ -1269,7 +1286,7 @@ characters)";
     std::cout << "new Shared" << std::endl;
     {
         std::array<std::shared_ptr<Vector2>, 1000> sharedPtrs;
-        Timer timer;
+        Timer timer("new_shared_pointer");
         for (int i = 0; i < sharedPtrs.size(); i++) 
             sharedPtrs[i] = std::shared_ptr<Vector2>(new Vector2());
     }
@@ -1277,7 +1294,7 @@ characters)";
     std::cout << "Make Unique" << std::endl;
     {
         std::array<std::unique_ptr<Vector2>, 1000> uniquePtrs;
-        Timer timer;
+        Timer timer("make_unique_pointer");
         for (int i = 0; i < uniquePtrs.size(); i++) 
             uniquePtrs[i] = std::make_unique<Vector2>();
     }

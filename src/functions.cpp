@@ -7,6 +7,7 @@
 #include <tuple>
 #include <fstream>
 #include <optional>
+#include <cmath>
 #include "models/shapes/Shape.h"
 #include "models/String.h"
 #include "timer.h"
@@ -103,7 +104,7 @@ void for_each(const std::vector<int>& vals, void(*func)(int)) {
 /// Spams "Hello! " to the console 100 times
 /// this function is timed via @struct Timer
 void hello_spam() {
-    Timer timer;
+    Timer timer("\"Hello!\" Spam");
 
     for (int i = 0; i < 100; ++i) {
         std::cout << "Hello! ";
