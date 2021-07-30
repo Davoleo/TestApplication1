@@ -911,6 +911,7 @@ ignores
 escapeeeee
 characters)";
 
+    //String views ------------------------------------
     std::cout << "std::string_view" << std::endl;
     //Every time you construct a new std::string some memory will be heap allocated
     //even methods like substr and others that modify -> copy the string and return the new instance will all allocate new heap memory
@@ -928,6 +929,10 @@ characters)";
     void print_string_view(const std::string_view stringView);
     print_string_view(firstNameView);
     print_string_view(lastNameView);
+
+    //Small String Optimizations 
+    //If an std::string <= than 15 chars long it is allocated on the stack instead of the heap
+    std::string nick = "Davoleo";
 
     std::cout << "------------------------- CONST ------------------------------" << std::endl;
 
