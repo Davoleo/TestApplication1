@@ -216,6 +216,7 @@
     <ClCompile Include="src\functions.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\main_legacy.cpp" />
+    <ClCompile Include="src\memory_tracking.cpp" />
     <ClCompile Include="src\models\shapes\Circle.cpp" />
     <ClCompile Include="src\models\shapes\Rectangle.cpp" />
     <ClCompile Include="src\models\random_singleton.h" />

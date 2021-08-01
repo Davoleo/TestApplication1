@@ -223,15 +223,24 @@ int main(int argc, char** argv) {
     std::cout << "1: main" << std::endl;
     std::cout << "2: legacy_main" << std::endl;
     std::cout << "3: worldo_test" << std::endl;
+    std::cout << "4: Memory_Allocation" << std::endl;
     std::cin >> sectionId;
 
     int section_world_test();
     int section_legacy_code();
+    int section_memory_tracking();
 
-    if (sectionId == 2)
+    switch (sectionId)
+    {
+    case 2:
         return section_legacy_code();
-    else if (sectionId == 3)
+    case 3:
         return section_world_test();
+    case 4:
+        return section_memory_tracking();
+    default:
+        break;
+    }
 
     Logger logger;
 
