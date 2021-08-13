@@ -259,6 +259,26 @@ int main(int argc, char** argv) {
     //Stored in memory
 
     //booleans (can either be true or false) (takes 1 bit of data although packed inside a byte [the only way to access the value])
+    //
+    //RVALUES & LVALUES
+    //An LValue is a value that you can assign to another RValue or LValue (e.g. sampleBool)
+    //An RValue is a value that can't be assigned to another value for example the constant true, and it's a temporary value that is not stored in memory
+    //You can't assign anything to an RValue (example you can't assign anything to the constant 'true')
+    //
+    //If you have a function that returns an integer 10 and you try to assign the call of the function to something else you will get a compiler
+    //error saying that you can't assign something to an RValue because by default functions return values in temporary storage that can't be modified
+    //While if the function returns an int reference (&) you will be able to assign the call of the function to another value effectively changing
+    //The value stored inside of the function (LValue reference)
+    // 
+    //Another example is that you can't pass an RValue to a function that accept a reference as a parameter
+    //
+    //Also when you assign complex expressions to a variable the expressions are considered RValues since they're not stored anywhere and they're temporary
+    //
+    //There are 3 ways of deciding whether you want to accept LValues only RValues only or both in C++
+    //- you can assign both RValues and LValues to const references (const type&)
+    //- you can only assign LValues to simple references (type&)
+    //- you can only assign RValues to double references (type&&)
+    //
     bool sampleBool = true;
     //integers
     int age;
