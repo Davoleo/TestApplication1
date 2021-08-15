@@ -682,6 +682,11 @@ int main(int argc, char** argv) {
     AssignAge(agetest);
     std::cout << agetest << std::endl;
 
+    //Argument Evaluation in functions might not happen in the right order, 
+    //or it could produce undefined behaviour if the same variable is edited multiple times
+    //
+    //Since the compiler can also evaluate parameters in parallel
+
     std::cout << "------------------- std::array (Static Arrays) -------------------" << std::endl;
 
     //std::arrays are stored on the stack
