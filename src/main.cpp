@@ -171,6 +171,7 @@ void Increment(int& value);
 void sFunction();
 void hello_spam();
 void printString(const std::string& string);
+void printCustomStringRValue(String&& string);
 
 template<typename T>
 void templatePrint(T value) {
@@ -346,6 +347,15 @@ int main(int argc, char** argv) {
 
     logger.info("Test");
     std::cout << Multiply(5, 8) << std::endl;
+
+    std::cout << "----------------------- Move Semantics --------------------" << std::endl;
+
+    String movedString("Move Semantiiicccccccssss");
+    //Allows to pass the string moving it to a temporary location (read move constructor of String)
+    printCustomStringRValue(std::move(movedString));
+    printCustomStringRValue("TestTest");
+
+    //Note: Apparently doesn't work in my instance, but can't be bothered to investigate why right now
 
     std::cout << "----------------------- Casting ---------------------------" << std::endl;
 

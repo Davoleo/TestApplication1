@@ -4,7 +4,7 @@
 
 struct AllocationMetrics {
 	uint32_t total_allocated = 0;
-	uint32_t total_freed = 0;
+	size_t total_freed = 0;
 	
 	uint32_t current_usage() {
 		return total_allocated - total_freed;
@@ -40,4 +40,6 @@ int section_memory_tracking() {
 		print_memory_usage();
 	}
 	print_memory_usage();
+
+	return 0;
 }

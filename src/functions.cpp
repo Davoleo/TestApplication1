@@ -86,6 +86,10 @@ void printString(const String& string) {
     std::cout << string << std::endl;
 }
 
+void printCustomStringRValue(String&& string) {
+    std::cout << string << std::endl;
+}
+
 void print_string_view(const std::string_view stringView) {
     std::cout << stringView << std::endl;
 }
