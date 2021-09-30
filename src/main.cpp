@@ -350,12 +350,21 @@ int main(int argc, char** argv) {
 
     std::cout << "----------------------- Move Semantics --------------------" << std::endl;
 
-    String movedString("Move Semantiiicccccccssss");
-    //Allows to pass the string moving it to a temporary location (read move constructor of String)
-    printCustomStringRValue(std::move(movedString));
-    printCustomStringRValue("TestTest");
+    String hello = "Hello";
+    //hello is moved into destHello
+    //std::move is an utility function that figures the type of hello and casts it to the temporary version of that type same things as doing (String&&)
+    String destHello = std::move(hello);
 
-    //Note: Apparently doesn't work in my instance, but can't be bothered to investigate why right now
+    //Assignment operator is only called on existing strings, so we can override it to create a move assignment operator to be used with temp values (or std::move)
+    String apple = "Apple";
+    String destApple;
+    apple.print();
+    destApple.print();
+
+    destApple = std::move(apple);
+
+    apple.print();
+    destApple.print();
 
     std::cout << "----------------------- Casting ---------------------------" << std::endl;
 
@@ -1323,29 +1332,29 @@ characters)";
         float y;
     };
 
-    std::cout << "Make Shared" << std::endl;
+    std::cout << "Make Shared (disabled)" << std::endl;
     {
         std::array<std::shared_ptr<Vector2>, 1000> sharedPtrs;
         Timer timer("make_shared_pointer");
-        for (int i = 0; i < sharedPtrs.size(); i++) 
-            sharedPtrs[i] = std::make_shared<Vector2>();
+        //for (int i = 0; i < sharedPtrs.size(); i++) 
+        //    sharedPtrs[i] = std::make_shared<Vector2>();
     }
 
 
-    std::cout << "new Shared" << std::endl;
+    std::cout << "new Shared (disabled)" << std::endl;
     {
         std::array<std::shared_ptr<Vector2>, 1000> sharedPtrs;
         Timer timer("new_shared_pointer");
-        for (int i = 0; i < sharedPtrs.size(); i++) 
-            sharedPtrs[i] = std::shared_ptr<Vector2>(new Vector2());
+        //for (int i = 0; i < sharedPtrs.size(); i++) 
+        //    sharedPtrs[i] = std::shared_ptr<Vector2>(new Vector2());
     }
 
-    std::cout << "Make Unique" << std::endl;
+    std::cout << "Make Unique (disabled)" << std::endl;
     {
         std::array<std::unique_ptr<Vector2>, 1000> uniquePtrs;
         Timer timer("make_unique_pointer");
-        for (int i = 0; i < uniquePtrs.size(); i++) 
-            uniquePtrs[i] = std::make_unique<Vector2>();
+        //for (int i = 0; i < uniquePtrs.size(); i++) 
+        //    uniquePtrs[i] = std::make_unique<Vector2>();
     }
 
     //__debugbreak();

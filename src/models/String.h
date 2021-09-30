@@ -49,6 +49,28 @@ public:
         std::cout << "moved String with size " << size << std::endl;
     }
 
+    String& operator=(String&& other) noexcept {
+
+        //If the object have the same address there's no need to do anything
+        if (this != &other) {
+            //Delete current data so that the old string buffer is cleaned up and doesn't cause a memory leak
+            delete[] buffer;
+
+            size = other.size;
+            //The new string points to the same buffer
+            buffer = other.buffer;
+
+            //You also need to take control of the old string making it a hollow object so that when
+            //The Destructor may be called on the old object it won't delete our buffer of data
+            //We've effectively moved the object to another instance without copying but just changing references
+            other.size = 0;
+            other.buffer = nullptr;
+            std::cout << "moved String with size " << size << std::endl;
+        }
+
+        return *this;
+    }
+
     ~String(){
         delete[] buffer;
         std::cout << "deleted String with size " << size << std::endl;
