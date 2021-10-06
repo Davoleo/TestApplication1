@@ -71,6 +71,9 @@
     <ClInclude Include="src\instrumentor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\structures\arrray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
