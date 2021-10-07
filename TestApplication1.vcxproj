@@ -223,7 +223,8 @@
     <ClCompile Include="src\worldo_test.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\structures\arrray.h" />
+    <ClInclude Include="src\structures\dynamic_array.h" />
+    <ClInclude Include="src\structures\static_array.h" />
     <ClInclude Include="src\instrumentor.h" />
     <ClInclude Include="src\Logger.h" />
     <ClInclude Include="src\models\Box.h" />

@@ -71,7 +71,10 @@
     <ClInclude Include="src\instrumentor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\structures\arrray.h">
+    <ClInclude Include="src\structures\static_array.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\structures\dynamic_array.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

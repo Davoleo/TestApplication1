@@ -3,7 +3,7 @@
 #include <iostream>
 
 template<typename T, size_t S>
-class arrray
+class sarray
 {
 private:
 	T buffer[S];
