@@ -2,11 +2,68 @@
 
 #include <iostream>
 
+//Custom iterator to support darrays
+template <typename darray>
+class darray_iterator {
+private:
+	pointer_type ptr;
+public:
+	using value_type = typename darray::value_type;
+	using pointer_type = value_type*;
+	using reference_type = value_type*;
+	darray_iterator(pointer_type ptr) : ptr(ptr) {}
+
+	darray_iterator& operator++() {
+		ptr++;
+		return *this;
+	}
+
+	darray_iterator& operator++(int) {
+		darray_iterator iterator = *this;
+		++(*this);
+		return iterator;
+	}
+
+	darray_iterator& operator--() {
+		ptr--;
+		return *this;
+	}
+
+	darray_iterator& operator++(int) {
+		darray_iterator iterator = *this;
+		--(*this);
+		return iterator;
+	}
+
+	reference_type operator[](int index) {
+		return *(ptr + index);
+	}
+
+	pointer_type operator->() {
+		return ptr;
+	}
+
+	reference_type operator*() {
+		return *ptr;
+	}
+
+	bool operator==(const darray_iterator& other) const {
+		return ptr == other.ptr;
+	}
+
+	bool operator!=(const darray_iterator& other) const {
+		return !(*this == other)
+	}
+};
+
 //The special delete and new operator usage is meant to avoid calling destructor and constructor on inner objects so that we can take complete 
 //Responsibility for the lifetime of these objects
 template <typename T>
 class darray
 {
+public
+	using value_type = T;
+	using iterator = darray_iterator<darray<T>>;
 private:
 	T* buffer;
 	int capacity;
@@ -22,7 +79,7 @@ private:
 		buffer = (T*) ::operator new(capacity * sizeof(T));
 
 		for (int i = 0; i < size; i++) {
-			buffer[i] = std::move(oldBoi[i]);
+			new (&buffer[i]) T(std::move(oldBoi[i]));
 		}
 
 		//Call the destructor on each element
@@ -132,6 +189,14 @@ public:
 		if (index >= size)
 			throw std::out_of_range("Index is out of bounds (max index should be " + (size - 1) + ')');
 		return buffer[index];
+	}
+
+	iterator begin() {
+		return darray_iterator(buffer)
+	}
+
+	iterator end() {
+		return darray_iterator(buffer + size)
 	}
 
 };

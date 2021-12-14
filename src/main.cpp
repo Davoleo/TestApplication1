@@ -32,6 +32,7 @@
 #include <thread>       // Multithreading support (raw threads)
 #include <future>       // std::async and futures support  (asynchrounous tasks)
 #include <chrono>       // Timing functions support
+#include <unordered_map>// Hash Maps basically
 
 #include <cstddef>      // Contains the offsetof() macro
 
@@ -332,11 +333,35 @@ int main(int argc, char** argv) {
     fruits.emplace_back("apple");
     fruits.emplace_back("orange");
 
+    //ITERATORS
     //Iterating with an iterator
     //instead of writing std::vector<std::string>::iterator which is a really long type you can use auto
     for (auto iterator = fruits.begin(); iterator != fruits.end(); iterator++) {
+        //It works through dereference because * is overridden in the iterator class
         std::cout << *iterator << std::endl;
     }
+
+    //Range-Based for loop (work if iterators are provided by the class [shorthand syntax for the previous loop])
+    for (std::string fruit : fruits)
+        std::cout << fruit << std::endl;
+
+    //Iterators with Hash Maps
+    using score_map = std::unordered_map<std::string, int>;
+    score_map scoreHashMap;
+    scoreHashMap["Dav"] = 3;
+    scoreHashMap["Zambo"] = 6;
+    scoreHashMap["Nexn"] = 5;
+
+    //It can also be done with range-based for loops
+    for (score_map::const_iterator it = scoreHashMap.begin(); it != scoreHashMap.end(); it++)
+    {
+        auto& key = it->first;
+        auto& value = it->second;
+        std::cout << key << " = " << value << std::endl;
+    }
+    //Range-Based for loops with structured bindings
+    for (auto [key, value] : scoreHashMap)
+        std::cout << key << " = " << value << std::endl;
 
     //stoi() converts a String to an Integer
     int n = stoi(emptyString);
