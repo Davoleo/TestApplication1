@@ -33,6 +33,7 @@
 #include <future>       // std::async and futures support  (asynchrounous tasks)
 #include <chrono>       // Timing functions support
 #include <unordered_map>// Hash Maps basically
+#include <bitset>       // Print numbers in binary format as bit sets with a fixed size
 
 #include <cstddef>      // Contains the offsetof() macro
 
@@ -423,6 +424,53 @@ int main(int argc, char** argv) {
     const int alreadyConst = 5;
     int* alreadyConstAddress = const_cast<int*>(&alreadyConst);
     //*alreadyConstAddress = 6; //Undefined Behaviour
+
+    std::cout << "------------------------ Bitwise Operators ----------------------" << std::endl;
+
+    //Left Shift (<<)
+    //Shifts all the numbers to the left
+    //Acts as a multiplication by 2^n with n being how many places the number is being shifted by
+    unsigned int shiftTest = 5;
+    shiftTest <<= 1; //5*2^1 = 10
+    std::cout << "5 << 1: " << shiftTest << std::endl;
+    shiftTest <<= 4; //10*2^4 = 160
+    std::cout << "10 << 4: " << shiftTest << std::endl;
+
+    //Right Shift (>>)
+    //Shifts all the numbers to the right (1 digits that are shifted over the end of the number are lost)
+    //Acts as a division by 2^n with n being how many places the number is being shifted by (integer division - numbers are truncated)
+    shiftTest >>= 5;
+    std::cout << "160 >> 5: " << shiftTest << std::endl;
+    shiftTest >>= 1;
+    std::cout << "5 >> 1: " << shiftTest << std::endl;
+    
+    //AND (&)
+    //Performs a bitwise AND on each bit of the 2 numbers (acts as a mask)
+    unsigned int bitA = 0b101100101;
+    unsigned int mask = 0b000001111;
+    unsigned int masked = bitA & mask; //00000 0101
+    std::cout << "a: " << bitA << std::endl;
+    std::cout << "mask: " << mask << std::endl;
+    std::cout << "masked: " << masked << std::endl;
+
+    //OR  (|)
+    //Performs a bitwise OR on each bit of the 2 numbers (turns on the flags on specific bits)
+    //For example here we flip the bits on the 
+    unsigned int restored = (0b10110 << 4) | masked;
+    std::cout << "restored: " << restored << " (" << std::bitset<9>(restored) << ")\n";
+    std::cout << "a == restored: " << (bitA == restored) << std::endl;
+
+    //XOR (^)
+    //Performs bitwise XOR on each bit of the 2 numbers (essentially if the 2 bits are different 1 is returned, otherwise 0 is returned)
+    //Can be used to perform parity checks (a ^ b will be 0 if a == b)
+    std::cout << "a ^ a: " << (bitA ^ bitA) << std::endl;
+    
+    //NOT (~)
+    //Unary operator | Inverts every bit of the number to its opposite (e.g. 11010 => 00101)
+    //Useful when you want to create masks to be used with & when you have the actual number corresponding to the bit you want to turn off
+    //Example: masking the 3rd bit of the bitA number:
+    mask = ~0b100;
+    std::cout << "a & ~0b100: " << std::bitset<9>(bitA & mask) << std::endl;
 
     std::cout << "------------------------ If Statement----------------------" << std::endl;
 
